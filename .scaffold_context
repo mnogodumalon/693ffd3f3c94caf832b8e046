@@ -1,0 +1,2711 @@
+# Scaffold Context — Generated File Contents
+
+These files are pre-generated. Do NOT Read them — their contents are below.
+EXCEPTION: DashboardOverview.tsx is NOT included here. You MUST Read it with the Read tool before Write.
+Your job: Analyze data (1-2 sentences), Edit Layout.tsx (title), Read then Write DashboardOverview.tsx (once), Deploy.
+index.css is pre-generated with the shared design system. Do NOT edit it.
+src/config/ai-features.ts is editable — set AI_PHOTO_SCAN['Entity'] = true to enable photo scan in dialogs.
+NEVER use Bash cat/echo/heredoc for file operations — always use Read/Write/Edit tools.
+
+Generated 45 scaffold files:
+  - src/App.tsx
+  - src/components/Layout.tsx
+  - src/components/PageShell.tsx
+  - src/components/TopBar.tsx
+  - src/pages/DashboardOverview.tsx
+  - src/components/ConfirmDialog.tsx
+  - src/components/StatCard.tsx
+  - src/index.css
+  - src/lib/ai.ts
+  - src/lib/chat-context.ts
+  - src/components/ChatWidget.tsx
+  - src/config/ai-features.ts
+  - src/lib/formatters.ts
+  - src/hooks/useDashboardData.ts
+  - src/types/enriched.ts
+  - src/lib/enrich.ts
+  - src/pages/SchulungsterminePage.tsx
+  - src/components/dialogs/SchulungstermineDialog.tsx
+  - src/components/dialogs/SchulungstermineViewDialog.tsx
+  - src/pages/ZertifikatePage.tsx
+  - src/components/dialogs/ZertifikateDialog.tsx
+  - src/components/dialogs/ZertifikateViewDialog.tsx
+  - src/pages/SchulungsanmeldungPage.tsx
+  - src/components/dialogs/SchulungsanmeldungDialog.tsx
+  - src/components/dialogs/SchulungsanmeldungViewDialog.tsx
+  - src/pages/RaeumePage.tsx
+  - src/components/dialogs/RaeumeDialog.tsx
+  - src/components/dialogs/RaeumeViewDialog.tsx
+  - src/pages/TrainerPage.tsx
+  - src/components/dialogs/TrainerDialog.tsx
+  - src/components/dialogs/TrainerViewDialog.tsx
+  - src/pages/BewertungenPage.tsx
+  - src/components/dialogs/BewertungenDialog.tsx
+  - src/components/dialogs/BewertungenViewDialog.tsx
+  - src/pages/TeilnehmerverwaltungPage.tsx
+  - src/components/dialogs/TeilnehmerverwaltungDialog.tsx
+  - src/components/dialogs/TeilnehmerverwaltungViewDialog.tsx
+  - src/pages/SchulungskatalogPage.tsx
+  - src/components/dialogs/SchulungskatalogDialog.tsx
+  - src/components/dialogs/SchulungskatalogViewDialog.tsx
+  - src/pages/MitarbeiterPage.tsx
+  - src/components/dialogs/MitarbeiterDialog.tsx
+  - src/components/dialogs/MitarbeiterViewDialog.tsx
+  - src/pages/AdminPage.tsx
+  - src/components/dialogs/BulkEditDialog.tsx
+
+## src/types/app.ts
+```
+// AUTOMATICALLY GENERATED TYPES - DO NOT EDIT
+
+export type LookupValue = { key: string; label: string };
+export type GeoLocation = { lat: number; long: number; info?: string };
+
+export interface Schulungstermine {
+  record_id: string;
+  createdat: string;
+  updatedat: string | null;
+  fields: {
+    schulung?: string; // applookup -> URL zu 'Schulungskatalog' Record
+    startdatum?: string; // Format: YYYY-MM-DD oder ISO String
+    enddatum?: string; // Format: YYYY-MM-DD oder ISO String
+    trainer?: string; // applookup -> URL zu 'Trainer' Record
+    raum?: string; // applookup -> URL zu 'Raeume' Record
+    status?: LookupValue;
+    verfuegbare_plaetze?: number;
+    bemerkungen?: string;
+  };
+}
+
+export interface Zertifikate {
+  record_id: string;
+  createdat: string;
+  updatedat: string | null;
+  fields: {
+    teilnahme?: string; // applookup -> URL zu 'Teilnehmerverwaltung' Record
+    empfaenger?: string; // applookup -> URL zu 'Mitarbeiter' Record
+    schulung?: string; // applookup -> URL zu 'Schulungskatalog' Record
+    zertifikatstyp?: LookupValue;
+    zertifikatsnummer?: string;
+    beschreibung?: string;
+    aussteller?: string;
+    aussteller_position?: string;
+    unterschrift?: string;
+    siegel?: string;
+    logo?: string;
+    vorlage?: LookupValue;
+    hintergrundfarbe?: LookupValue;
+    schriftart?: string;
+    layoutwuensche?: string;
+    qr_code_url?: string;
+    digitale_signatur?: boolean;
+    social_media?: string;
+    status?: LookupValue;
+    ausstellungsdatum?: string; // Format: YYYY-MM-DD oder ISO String
+  };
+}
+
+export interface Schulungsanmeldung {
+  record_id: string;
+  createdat: string;
+  updatedat: string | null;
+  fields: {
+    mitarbeiter?: string; // applookup -> URL zu 'Mitarbeiter' Record
+    schulungstermin?: string; // applookup -> URL zu 'Schulungstermine' Record
+    bemerkungen?: string;
+  };
+}
+
+export interface Raeume {
+  record_id: string;
+  createdat: string;
+  updatedat: string | null;
+  fields: {
+    raumname?: string;
+    standort?: string;
+    kapazitaet?: number;
+    ausstattung?: LookupValue[];
+    bemerkungen?: string;
+  };
+}
+
+export interface Trainer {
+  record_id: string;
+  createdat: string;
+  updatedat: string | null;
+  fields: {
+    vorname?: string;
+    nachname?: string;
+    typ?: LookupValue;
+    email?: string;
+    telefon?: string;
+    expertise?: LookupValue[];
+    qualifikationen?: string;
+  };
+}
+
+export interface Bewertungen {
+  record_id: string;
+  createdat: string;
+  updatedat: string | null;
+  fields: {
+    teilnahme?: string; // applookup -> URL zu 'Teilnehmerverwaltung' Record
+    gesamtbewertung?: LookupValue;
+    inhaltsbewertung?: LookupValue;
+    organisationsbewertung?: LookupValue;
+    kommentar?: string;
+    verbesserungsvorschlaege?: string;
+    trainerbewertung?: LookupValue;
+  };
+}
+
+export interface Teilnehmerverwaltung {
+  record_id: string;
+  createdat: string;
+  updatedat: string | null;
+  fields: {
+    schulungstermin?: string; // applookup -> URL zu 'Schulungstermine' Record
+    anmeldedatum?: string; // Format: YYYY-MM-DD oder ISO String
+    status?: LookupValue;
+    anwesenheit?: boolean;
+    bemerkungen?: string;
+    mitarbeiter?: string; // applookup -> URL zu 'Mitarbeiter' Record
+    zertifikat_ausgestellt?: boolean;
+  };
+}
+
+export interface Schulungskatalog {
+  record_id: string;
+  createdat: string;
+  updatedat: string | null;
+  fields: {
+    kategorie?: LookupValue;
+    dauer_tage?: number;
+    max_teilnehmer?: number;
+    zielgruppe?: string;
+    lernziele?: string;
+    voraussetzungen?: string;
+    titel?: string;
+    beschreibung?: string;
+    elearning_dateien?: string;
+  };
+}
+
+export interface Mitarbeiter {
+  record_id: string;
+  createdat: string;
+  updatedat: string | null;
+  fields: {
+    nachname?: string;
+    personalnummer?: string;
+    telefon?: string;
+    abteilung?: string;
+    vorname?: string;
+    email?: string;
+    position?: string;
+  };
+}
+
+export const APP_IDS = {
+  SCHULUNGSTERMINE: '693ffd1c598f914b8770d838',
+  ZERTIFIKATE: '69400b1ad27549fae3a988e8',
+  SCHULUNGSANMELDUNG: '693ffd1ed4fbbcda56f1b83e',
+  RAEUME: '693ffd1ab347945f97bce858',
+  TRAINER: '693ffd1961c93d563b523829',
+  BEWERTUNGEN: '693ffd1d0fd5fac77b223db6',
+  TEILNEHMERVERWALTUNG: '693ffd1c2abdda157f9b3873',
+  SCHULUNGSKATALOG: '693ffd1b64c092bd3fb64dec',
+  MITARBEITER: '693ffd127128a18c7909c8d2',
+} as const;
+
+
+export const LOOKUP_OPTIONS: Record<string, Record<string, {key: string, label: string}[]>> = {
+  schulungstermine: {
+    status: [{ key: "geplant", label: "Geplant" }, { key: "bestaetigt", label: "Bestätigt" }, { key: "durchgefuehrt", label: "Durchgeführt" }, { key: "abgesagt", label: "Abgesagt" }],
+  },
+  zertifikate: {
+    zertifikatstyp: [{ key: "teilnahmebestaetigung", label: "Teilnahmebestätigung" }, { key: "abschlusszertifikat", label: "Abschlusszertifikat" }],
+    vorlage: [{ key: "klassisch", label: "Klassisch" }, { key: "modern", label: "Modern" }, { key: "individuell", label: "Individuell" }],
+    hintergrundfarbe: [{ key: "weiss", label: "Weiß" }, { key: "blau", label: "Blau" }, { key: "gruen", label: "Grün" }, { key: "gelb", label: "Gelb" }, { key: "individuell", label: "Individuell" }],
+    status: [{ key: "aktiv", label: "Aktiv" }, { key: "inaktiv", label: "Inaktiv" }, { key: "widerrufen", label: "Widerrufen" }],
+  },
+  raeume: {
+    ausstattung: [{ key: "beamer", label: "Beamer" }, { key: "whiteboard", label: "Whiteboard" }, { key: "flipchart", label: "Flipchart" }, { key: "computer", label: "Computer" }, { key: "wlan", label: "WLAN" }, { key: "videokonferenz", label: "Videokonferenz" }, { key: "klimaanlage", label: "Klimaanlage" }, { key: "barrierefrei", label: "Barrierefreier Zugang" }],
+  },
+  trainer: {
+    typ: [{ key: "extern", label: "Extern" }, { key: "intern", label: "Intern" }],
+    expertise: [{ key: "it_software", label: "IT & Software" }, { key: "fuehrung_management", label: "Führung & Management" }, { key: "kommunikation", label: "Kommunikation" }, { key: "projektmanagement", label: "Projektmanagement" }, { key: "vertrieb_marketing", label: "Vertrieb & Marketing" }, { key: "compliance_recht", label: "Compliance & Recht" }, { key: "gesundheit_sicherheit", label: "Gesundheit & Sicherheit" }, { key: "persoenliche_entwicklung", label: "Persönliche Entwicklung" }],
+  },
+  bewertungen: {
+    gesamtbewertung: [{ key: "rating_1", label: "1 - Sehr schlecht" }, { key: "rating_2", label: "2 - Schlecht" }, { key: "rating_3", label: "3 - Befriedigend" }, { key: "rating_4", label: "4 - Gut" }, { key: "rating_5", label: "5 - Sehr gut" }],
+    inhaltsbewertung: [{ key: "rating_1", label: "1 - Sehr schlecht" }, { key: "rating_2", label: "2 - Schlecht" }, { key: "rating_3", label: "3 - Befriedigend" }, { key: "rating_4", label: "4 - Gut" }, { key: "rating_5", label: "5 - Sehr gut" }],
+    organisationsbewertung: [{ key: "rating_1", label: "1 - Sehr schlecht" }, { key: "rating_2", label: "2 - Schlecht" }, { key: "rating_3", label: "3 - Befriedigend" }, { key: "rating_4", label: "4 - Gut" }, { key: "rating_5", label: "5 - Sehr gut" }],
+    trainerbewertung: [{ key: "rating_1", label: "1 - Sehr schlecht" }, { key: "rating_2", label: "2 - Schlecht" }, { key: "rating_3", label: "3 - Befriedigend" }, { key: "rating_4", label: "4 - Gut" }, { key: "rating_5", label: "5 - Sehr gut" }],
+  },
+  teilnehmerverwaltung: {
+    status: [{ key: "angemeldet", label: "Angemeldet" }, { key: "warteliste", label: "Warteliste" }, { key: "teilgenommen", label: "Teilgenommen" }, { key: "abgesagt", label: "Abgesagt" }, { key: "nicht_erschienen", label: "Nicht erschienen" }],
+  },
+  schulungskatalog: {
+    kategorie: [{ key: "it_software", label: "IT & Software" }, { key: "fuehrung_management", label: "Führung & Management" }, { key: "kommunikation", label: "Kommunikation" }, { key: "projektmanagement", label: "Projektmanagement" }, { key: "vertrieb_marketing", label: "Vertrieb & Marketing" }, { key: "compliance_recht", label: "Compliance & Recht" }, { key: "gesundheit_sicherheit", label: "Gesundheit & Sicherheit" }, { key: "persoenliche_entwicklung", label: "Persönliche Entwicklung" }],
+  },
+};
+
+export const FIELD_TYPES: Record<string, Record<string, string>> = {
+  'schulungstermine': {
+    'schulung': 'applookup/select',
+    'startdatum': 'date/datetimeminute',
+    'enddatum': 'date/datetimeminute',
+    'trainer': 'applookup/select',
+    'raum': 'applookup/select',
+    'status': 'lookup/select',
+    'verfuegbare_plaetze': 'number',
+    'bemerkungen': 'string/textarea',
+  },
+  'zertifikate': {
+    'teilnahme': 'applookup/select',
+    'empfaenger': 'applookup/select',
+    'schulung': 'applookup/select',
+    'zertifikatstyp': 'lookup/select',
+    'zertifikatsnummer': 'string/text',
+    'beschreibung': 'string/textarea',
+    'aussteller': 'string/text',
+    'aussteller_position': 'string/text',
+    'unterschrift': 'string/text',
+    'siegel': 'string/text',
+    'logo': 'string/text',
+    'vorlage': 'lookup/select',
+    'hintergrundfarbe': 'lookup/select',
+    'schriftart': 'string/text',
+    'layoutwuensche': 'string/textarea',
+    'qr_code_url': 'string/text',
+    'digitale_signatur': 'bool',
+    'social_media': 'string/text',
+    'status': 'lookup/select',
+    'ausstellungsdatum': 'date/date',
+  },
+  'schulungsanmeldung': {
+    'mitarbeiter': 'applookup/select',
+    'schulungstermin': 'applookup/select',
+    'bemerkungen': 'string/textarea',
+  },
+  'raeume': {
+    'raumname': 'string/text',
+    'standort': 'string/text',
+    'kapazitaet': 'number',
+    'ausstattung': 'multiplelookup/checkbox',
+    'bemerkungen': 'string/textarea',
+  },
+  'trainer': {
+    'vorname': 'string/text',
+    'nachname': 'string/text',
+    'typ': 'lookup/select',
+    'email': 'string/email',
+    'telefon': 'string/tel',
+    'expertise': 'multiplelookup/checkbox',
+    'qualifikationen': 'string/textarea',
+  },
+  'bewertungen': {
+    'teilnahme': 'applookup/select',
+    'gesamtbewertung': 'lookup/radio',
+    'inhaltsbewertung': 'lookup/radio',
+    'organisationsbewertung': 'lookup/radio',
+    'kommentar': 'string/textarea',
+    'verbesserungsvorschlaege': 'string/textarea',
+    'trainerbewertung': 'lookup/radio',
+  },
+  'teilnehmerverwaltung': {
+    'schulungstermin': 'applookup/select',
+    'anmeldedatum': 'date/date',
+    'status': 'lookup/select',
+    'anwesenheit': 'bool',
+    'bemerkungen': 'string/textarea',
+    'mitarbeiter': 'applookup/select',
+    'zertifikat_ausgestellt': 'bool',
+  },
+  'schulungskatalog': {
+    'kategorie': 'lookup/select',
+    'dauer_tage': 'number',
+    'max_teilnehmer': 'number',
+    'zielgruppe': 'string/text',
+    'lernziele': 'string/textarea',
+    'voraussetzungen': 'string/textarea',
+    'titel': 'string/text',
+    'beschreibung': 'string/textarea',
+    'elearning_dateien': 'file',
+  },
+  'mitarbeiter': {
+    'nachname': 'string/text',
+    'personalnummer': 'string/text',
+    'telefon': 'string/tel',
+    'abteilung': 'string/text',
+    'vorname': 'string/text',
+    'email': 'string/email',
+    'position': 'string/text',
+  },
+};
+
+type StripLookup<T> = {
+  [K in keyof T]: T[K] extends LookupValue | undefined ? string | undefined
+    : T[K] extends LookupValue[] | undefined ? string[] | undefined
+    : T[K];
+};
+
+// Helper Types for creating new records (lookup fields as plain strings for API)
+export type CreateSchulungstermine = StripLookup<Schulungstermine['fields']>;
+export type CreateZertifikate = StripLookup<Zertifikate['fields']>;
+export type CreateSchulungsanmeldung = StripLookup<Schulungsanmeldung['fields']>;
+export type CreateRaeume = StripLookup<Raeume['fields']>;
+export type CreateTrainer = StripLookup<Trainer['fields']>;
+export type CreateBewertungen = StripLookup<Bewertungen['fields']>;
+export type CreateTeilnehmerverwaltung = StripLookup<Teilnehmerverwaltung['fields']>;
+export type CreateSchulungskatalog = StripLookup<Schulungskatalog['fields']>;
+export type CreateMitarbeiter = StripLookup<Mitarbeiter['fields']>;
+```
+
+## src/services/livingAppsService.ts
+```
+// AUTOMATICALLY GENERATED SERVICE
+import { APP_IDS, LOOKUP_OPTIONS, FIELD_TYPES } from '@/types/app';
+import type { Schulungstermine, Zertifikate, Schulungsanmeldung, Raeume, Trainer, Bewertungen, Teilnehmerverwaltung, Schulungskatalog, Mitarbeiter } from '@/types/app';
+
+// Base Configuration
+const API_BASE_URL = 'https://my.living-apps.de/rest';
+
+// --- HELPER FUNCTIONS ---
+export function extractRecordId(url: unknown): string | null {
+  if (!url) return null;
+  if (typeof url !== 'string') return null;
+  const match = url.match(/([a-f0-9]{24})$/i);
+  return match ? match[1] : null;
+}
+
+export function createRecordUrl(appId: string, recordId: string): string {
+  return `https://my.living-apps.de/rest/apps/${appId}/records/${recordId}`;
+}
+
+async function callApi(method: string, endpoint: string, data?: any) {
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    method,
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',  // Nutze Session Cookies für Auth
+    body: data ? JSON.stringify(data) : undefined
+  });
+  if (!response.ok) throw new Error(await response.text());
+  // DELETE returns often empty body or simple status
+  if (method === 'DELETE') return true;
+  return response.json();
+}
+
+/** Upload a file to LivingApps. Returns the file URL for use in record fields. */
+export async function uploadFile(file: File | Blob, filename?: string): Promise<string> {
+  const formData = new FormData();
+  formData.append('file', file, filename ?? (file instanceof File ? file.name : 'upload'));
+  const res = await fetch(`${API_BASE_URL}/files`, {
+    method: 'POST',
+    credentials: 'include',
+    body: formData,
+  });
+  if (!res.ok) throw new Error(`File upload failed: ${res.status}`);
+  const data = await res.json();
+  return data.url;
+}
+
+function enrichLookupFields<T extends { fields: Record<string, unknown> }>(
+  records: T[], entityKey: string
+): T[] {
+  const opts = LOOKUP_OPTIONS[entityKey];
+  if (!opts) return records;
+  return records.map(r => {
+    const fields = { ...r.fields };
+    for (const [fieldKey, options] of Object.entries(opts)) {
+      const val = fields[fieldKey];
+      if (typeof val === 'string') {
+        const m = options.find(o => o.key === val);
+        fields[fieldKey] = m ?? { key: val, label: val };
+      } else if (Array.isArray(val)) {
+        fields[fieldKey] = val.map(v => {
+          if (typeof v === 'string') {
+            const m = options.find(o => o.key === v);
+            return m ?? { key: v, label: v };
+          }
+          return v;
+        });
+      }
+    }
+    return { ...r, fields } as T;
+  });
+}
+
+/** Normalize fields for API writes: strip lookup objects to keys, fix date formats. */
+export function cleanFieldsForApi(
+  fields: Record<string, unknown>,
+  entityKey: string
+): Record<string, unknown> {
+  const clean: Record<string, unknown> = { ...fields };
+  for (const [k, v] of Object.entries(clean)) {
+    if (v && typeof v === 'object' && !Array.isArray(v) && 'key' in v) clean[k] = (v as any).key;
+    if (Array.isArray(v)) clean[k] = v.map((item: any) => item && typeof item === 'object' && 'key' in item ? item.key : item);
+  }
+  const types = FIELD_TYPES[entityKey];
+  if (types) {
+    for (const [k, ft] of Object.entries(types)) {
+      const val = clean[k];
+      if (typeof val !== 'string' || !val) continue;
+      if (ft === 'date/datetimeminute') clean[k] = val.slice(0, 16);
+      else if (ft === 'date/date') clean[k] = val.slice(0, 10);
+    }
+  }
+  return clean;
+}
+
+let _cachedUserProfile: Record<string, unknown> | null = null;
+
+export async function getUserProfile(): Promise<Record<string, unknown>> {
+  if (_cachedUserProfile) return _cachedUserProfile;
+  const raw = await callApi('GET', '/user');
+  const skip = new Set(['id', 'image', 'lang', 'gender', 'title', 'fax', 'menus', 'initials']);
+  const data: Record<string, unknown> = {};
+  for (const [k, v] of Object.entries(raw)) {
+    if (v != null && !skip.has(k)) data[k] = v;
+  }
+  _cachedUserProfile = data;
+  return data;
+}
+
+export interface HeaderProfile {
+  firstname: string;
+  surname: string;
+  email: string;
+  image: string | null;
+  company: string | null;
+}
+
+let _cachedHeaderProfile: HeaderProfile | null = null;
+
+export async function getHeaderProfile(): Promise<HeaderProfile> {
+  if (_cachedHeaderProfile) return _cachedHeaderProfile;
+  const raw = await callApi('GET', '/user');
+  _cachedHeaderProfile = {
+    firstname: raw.firstname ?? '',
+    surname: raw.surname ?? '',
+    email: raw.email ?? '',
+    image: raw.image ?? null,
+    company: raw.company ?? null,
+  };
+  return _cachedHeaderProfile;
+}
+
+export interface AppGroupInfo {
+  id: string;
+  name: string;
+  image: string | null;
+  createdat: string;
+  /** Resolved link: /objects/{id}/ if the dashboard exists, otherwise /gateway/apps/{firstAppId}?template=list_page */
+  href: string;
+}
+
+let _cachedAppGroups: AppGroupInfo[] | null = null;
+
+export async function getAppGroups(): Promise<AppGroupInfo[]> {
+  if (_cachedAppGroups) return _cachedAppGroups;
+  const raw = await callApi('GET', '/appgroups?with=apps');
+  const groups: AppGroupInfo[] = Object.values(raw)
+    .map((g: any) => {
+      const firstAppId = Object.keys(g.apps ?? {})[0] ?? g.id;
+      return {
+        id: g.id,
+        name: g.name,
+        image: g.image ?? null,
+        createdat: g.createdat ?? '',
+        href: `/gateway/apps/${firstAppId}?template=list_page`,
+        _firstAppId: firstAppId,
+      };
+    })
+    .sort((a, b) => b.createdat.localeCompare(a.createdat));
+
+  // Check which appgroups have a working dashboard at /objects/{id}/
+  const checks = await Promise.allSettled(
+    groups.map(g => fetch(`/objects/${g.id}/`, { method: 'HEAD', credentials: 'include' }))
+  );
+  checks.forEach((result, i) => {
+    if (result.status === 'fulfilled' && result.value.ok) {
+      groups[i].href = `/objects/${groups[i].id}/`;
+    }
+  });
+
+  // Clean up internal helper property
+  groups.forEach(g => delete (g as any)._firstAppId);
+
+  _cachedAppGroups = groups;
+  return _cachedAppGroups;
+}
+
+export class LivingAppsService {
+  // --- SCHULUNGSTERMINE ---
+  static async getSchulungstermine(): Promise<Schulungstermine[]> {
+    const data = await callApi('GET', `/apps/${APP_IDS.SCHULUNGSTERMINE}/records`);
+    const records = Object.entries(data).map(([id, rec]: [string, any]) => ({
+      record_id: id, ...rec
+    })) as Schulungstermine[];
+    return enrichLookupFields(records, 'schulungstermine');
+  }
+  static async getSchulungstermineEntry(id: string): Promise<Schulungstermine | undefined> {
+    const data = await callApi('GET', `/apps/${APP_IDS.SCHULUNGSTERMINE}/records/${id}`);
+    const record = { record_id: data.id, ...data } as Schulungstermine;
+    return enrichLookupFields([record], 'schulungstermine')[0];
+  }
+  static async createSchulungstermineEntry(fields: Schulungstermine['fields']) {
+    return callApi('POST', `/apps/${APP_IDS.SCHULUNGSTERMINE}/records`, { fields });
+  }
+  static async updateSchulungstermineEntry(id: string, fields: Partial<Schulungstermine['fields']>) {
+    return callApi('PATCH', `/apps/${APP_IDS.SCHULUNGSTERMINE}/records/${id}`, { fields });
+  }
+  static async deleteSchulungstermineEntry(id: string) {
+    return callApi('DELETE', `/apps/${APP_IDS.SCHULUNGSTERMINE}/records/${id}`);
+  }
+
+  // --- ZERTIFIKATE ---
+  static async getZertifikate(): Promise<Zertifikate[]> {
+    const data = await callApi('GET', `/apps/${APP_IDS.ZERTIFIKATE}/records`);
+    const records = Object.entries(data).map(([id, rec]: [string, any]) => ({
+      record_id: id, ...rec
+    })) as Zertifikate[];
+    return enrichLookupFields(records, 'zertifikate');
+  }
+  static async getZertifikateEntry(id: string): Promise<Zertifikate | undefined> {
+    const data = await callApi('GET', `/apps/${APP_IDS.ZERTIFIKATE}/records/${id}`);
+    const record = { record_id: data.id, ...data } as Zertifikate;
+    return enrichLookupFields([record], 'zertifikate')[0];
+  }
+  static async createZertifikateEntry(fields: Zertifikate['fields']) {
+    return callApi('POST', `/apps/${APP_IDS.ZERTIFIKATE}/records`, { fields });
+  }
+  static async updateZertifikateEntry(id: string, fields: Partial<Zertifikate['fields']>) {
+    return callApi('PATCH', `/apps/${APP_IDS.ZERTIFIKATE}/records/${id}`, { fields });
+  }
+  static async deleteZertifikateEntry(id: string) {
+    return callApi('DELETE', `/apps/${APP_IDS.ZERTIFIKATE}/records/${id}`);
+  }
+
+  // --- SCHULUNGSANMELDUNG ---
+  static async getSchulungsanmeldung(): Promise<Schulungsanmeldung[]> {
+    const data = await callApi('GET', `/apps/${APP_IDS.SCHULUNGSANMELDUNG}/records`);
+    const records = Object.entries(data).map(([id, rec]: [string, any]) => ({
+      record_id: id, ...rec
+    })) as Schulungsanmeldung[];
+    return enrichLookupFields(records, 'schulungsanmeldung');
+  }
+  static async getSchulungsanmeldungEntry(id: string): Promise<Schulungsanmeldung | undefined> {
+    const data = await callApi('GET', `/apps/${APP_IDS.SCHULUNGSANMELDUNG}/records/${id}`);
+    const record = { record_id: data.id, ...data } as Schulungsanmeldung;
+    return enrichLookupFields([record], 'schulungsanmeldung')[0];
+  }
+  static async createSchulungsanmeldungEntry(fields: Schulungsanmeldung['fields']) {
+    return callApi('POST', `/apps/${APP_IDS.SCHULUNGSANMELDUNG}/records`, { fields });
+  }
+  static async updateSchulungsanmeldungEntry(id: string, fields: Partial<Schulungsanmeldung['fields']>) {
+    return callApi('PATCH', `/apps/${APP_IDS.SCHULUNGSANMELDUNG}/records/${id}`, { fields });
+  }
+  static async deleteSchulungsanmeldungEntry(id: string) {
+    return callApi('DELETE', `/apps/${APP_IDS.SCHULUNGSANMELDUNG}/records/${id}`);
+  }
+
+  // --- RAEUME ---
+  static async getRaeume(): Promise<Raeume[]> {
+    const data = await callApi('GET', `/apps/${APP_IDS.RAEUME}/records`);
+    const records = Object.entries(data).map(([id, rec]: [string, any]) => ({
+      record_id: id, ...rec
+    })) as Raeume[];
+    return enrichLookupFields(records, 'raeume');
+  }
+  static async getRaeumeEntry(id: string): Promise<Raeume | undefined> {
+    const data = await callApi('GET', `/apps/${APP_IDS.RAEUME}/records/${id}`);
+    const record = { record_id: data.id, ...data } as Raeume;
+    return enrichLookupFields([record], 'raeume')[0];
+  }
+  static async createRaeumeEntry(fields: Raeume['fields']) {
+    return callApi('POST', `/apps/${APP_IDS.RAEUME}/records`, { fields });
+  }
+  static async updateRaeumeEntry(id: string, fields: Partial<Raeume['fields']>) {
+    return callApi('PATCH', `/apps/${APP_IDS.RAEUME}/records/${id}`, { fields });
+  }
+  static async deleteRaeumeEntry(id: string) {
+    return callApi('DELETE', `/apps/${APP_IDS.RAEUME}/records/${id}`);
+  }
+
+  // --- TRAINER ---
+  static async getTrainer(): Promise<Trainer[]> {
+    const data = await callApi('GET', `/apps/${APP_IDS.TRAINER}/records`);
+    const records = Object.entries(data).map(([id, rec]: [string, any]) => ({
+      record_id: id, ...rec
+    })) as Trainer[];
+    return enrichLookupFields(records, 'trainer');
+  }
+  static async getTrainerEntry(id: string): Promise<Trainer | undefined> {
+    const data = await callApi('GET', `/apps/${APP_IDS.TRAINER}/records/${id}`);
+    const record = { record_id: data.id, ...data } as Trainer;
+    return enrichLookupFields([record], 'trainer')[0];
+  }
+  static async createTrainerEntry(fields: Trainer['fields']) {
+    return callApi('POST', `/apps/${APP_IDS.TRAINER}/records`, { fields });
+  }
+  static async updateTrainerEntry(id: string, fields: Partial<Trainer['fields']>) {
+    return callApi('PATCH', `/apps/${APP_IDS.TRAINER}/records/${id}`, { fields });
+  }
+  static async deleteTrainerEntry(id: string) {
+    return callApi('DELETE', `/apps/${APP_IDS.TRAINER}/records/${id}`);
+  }
+
+  // --- BEWERTUNGEN ---
+  static async getBewertungen(): Promise<Bewertungen[]> {
+    const data = await callApi('GET', `/apps/${APP_IDS.BEWERTUNGEN}/records`);
+    const records = Object.entries(data).map(([id, rec]: [string, any]) => ({
+      record_id: id, ...rec
+    })) as Bewertungen[];
+    return enrichLookupFields(records, 'bewertungen');
+  }
+  static async getBewertungenEntry(id: string): Promise<Bewertungen | undefined> {
+    const data = await callApi('GET', `/apps/${APP_IDS.BEWERTUNGEN}/records/${id}`);
+    const record = { record_id: data.id, ...data } as Bewertungen;
+    return enrichLookupFields([record], 'bewertungen')[0];
+  }
+  static async createBewertungenEntry(fields: Bewertungen['fields']) {
+    return callApi('POST', `/apps/${APP_IDS.BEWERTUNGEN}/records`, { fields });
+  }
+  static async updateBewertungenEntry(id: string, fields: Partial<Bewertungen['fields']>) {
+    return callApi('PATCH', `/apps/${APP_IDS.BEWERTUNGEN}/records/${id}`, { fields });
+  }
+  static async deleteBewertungenEntry(id: string) {
+    return callApi('DELETE', `/apps/${APP_IDS.BEWERTUNGEN}/records/${id}`);
+  }
+
+  // --- TEILNEHMERVERWALTUNG ---
+  static async getTeilnehmerverwaltung(): Promise<Teilnehmerverwaltung[]> {
+    const data = await callApi('GET', `/apps/${APP_IDS.TEILNEHMERVERWALTUNG}/records`);
+    const records = Object.entries(data).map(([id, rec]: [string, any]) => ({
+      record_id: id, ...rec
+    })) as Teilnehmerverwaltung[];
+    return enrichLookupFields(records, 'teilnehmerverwaltung');
+  }
+  static async getTeilnehmerverwaltungEntry(id: string): Promise<Teilnehmerverwaltung | undefined> {
+    const data = await callApi('GET', `/apps/${APP_IDS.TEILNEHMERVERWALTUNG}/records/${id}`);
+    const record = { record_id: data.id, ...data } as Teilnehmerverwaltung;
+    return enrichLookupFields([record], 'teilnehmerverwaltung')[0];
+  }
+  static async createTeilnehmerverwaltungEntry(fields: Teilnehmerverwaltung['fields']) {
+    return callApi('POST', `/apps/${APP_IDS.TEILNEHMERVERWALTUNG}/records`, { fields });
+  }
+  static async updateTeilnehmerverwaltungEntry(id: string, fields: Partial<Teilnehmerverwaltung['fields']>) {
+    return callApi('PATCH', `/apps/${APP_IDS.TEILNEHMERVERWALTUNG}/records/${id}`, { fields });
+  }
+  static async deleteTeilnehmerverwaltungEntry(id: string) {
+    return callApi('DELETE', `/apps/${APP_IDS.TEILNEHMERVERWALTUNG}/records/${id}`);
+  }
+
+  // --- SCHULUNGSKATALOG ---
+  static async getSchulungskatalog(): Promise<Schulungskatalog[]> {
+    const data = await callApi('GET', `/apps/${APP_IDS.SCHULUNGSKATALOG}/records`);
+    const records = Object.entries(data).map(([id, rec]: [string, any]) => ({
+      record_id: id, ...rec
+    })) as Schulungskatalog[];
+    return enrichLookupFields(records, 'schulungskatalog');
+  }
+  static async getSchulungskatalogEntry(id: string): Promise<Schulungskatalog | undefined> {
+    const data = await callApi('GET', `/apps/${APP_IDS.SCHULUNGSKATALOG}/records/${id}`);
+    const record = { record_id: data.id, ...data } as Schulungskatalog;
+    return enrichLookupFields([record], 'schulungskatalog')[0];
+  }
+  static async createSchulungskatalogEntry(fields: Schulungskatalog['fields']) {
+    return callApi('POST', `/apps/${APP_IDS.SCHULUNGSKATALOG}/records`, { fields });
+  }
+  static async updateSchulungskatalogEntry(id: string, fields: Partial<Schulungskatalog['fields']>) {
+    return callApi('PATCH', `/apps/${APP_IDS.SCHULUNGSKATALOG}/records/${id}`, { fields });
+  }
+  static async deleteSchulungskatalogEntry(id: string) {
+    return callApi('DELETE', `/apps/${APP_IDS.SCHULUNGSKATALOG}/records/${id}`);
+  }
+
+  // --- MITARBEITER ---
+  static async getMitarbeiter(): Promise<Mitarbeiter[]> {
+    const data = await callApi('GET', `/apps/${APP_IDS.MITARBEITER}/records`);
+    const records = Object.entries(data).map(([id, rec]: [string, any]) => ({
+      record_id: id, ...rec
+    })) as Mitarbeiter[];
+    return enrichLookupFields(records, 'mitarbeiter');
+  }
+  static async getMitarbeiterEntry(id: string): Promise<Mitarbeiter | undefined> {
+    const data = await callApi('GET', `/apps/${APP_IDS.MITARBEITER}/records/${id}`);
+    const record = { record_id: data.id, ...data } as Mitarbeiter;
+    return enrichLookupFields([record], 'mitarbeiter')[0];
+  }
+  static async createMitarbeiterEntry(fields: Mitarbeiter['fields']) {
+    return callApi('POST', `/apps/${APP_IDS.MITARBEITER}/records`, { fields });
+  }
+  static async updateMitarbeiterEntry(id: string, fields: Partial<Mitarbeiter['fields']>) {
+    return callApi('PATCH', `/apps/${APP_IDS.MITARBEITER}/records/${id}`, { fields });
+  }
+  static async deleteMitarbeiterEntry(id: string) {
+    return callApi('DELETE', `/apps/${APP_IDS.MITARBEITER}/records/${id}`);
+  }
+
+}
+```
+
+## src/App.tsx
+```
+import { HashRouter, Routes, Route } from 'react-router-dom';
+import { Layout } from '@/components/Layout';
+import DashboardOverview from '@/pages/DashboardOverview';
+import AdminPage from '@/pages/AdminPage';
+import SchulungsterminePage from '@/pages/SchulungsterminePage';
+import ZertifikatePage from '@/pages/ZertifikatePage';
+import SchulungsanmeldungPage from '@/pages/SchulungsanmeldungPage';
+import RaeumePage from '@/pages/RaeumePage';
+import TrainerPage from '@/pages/TrainerPage';
+import BewertungenPage from '@/pages/BewertungenPage';
+import TeilnehmerverwaltungPage from '@/pages/TeilnehmerverwaltungPage';
+import SchulungskatalogPage from '@/pages/SchulungskatalogPage';
+import MitarbeiterPage from '@/pages/MitarbeiterPage';
+
+export default function App() {
+  return (
+    <HashRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<DashboardOverview />} />
+          <Route path="schulungstermine" element={<SchulungsterminePage />} />
+          <Route path="zertifikate" element={<ZertifikatePage />} />
+          <Route path="schulungsanmeldung" element={<SchulungsanmeldungPage />} />
+          <Route path="raeume" element={<RaeumePage />} />
+          <Route path="trainer" element={<TrainerPage />} />
+          <Route path="bewertungen" element={<BewertungenPage />} />
+          <Route path="teilnehmerverwaltung" element={<TeilnehmerverwaltungPage />} />
+          <Route path="schulungskatalog" element={<SchulungskatalogPage />} />
+          <Route path="mitarbeiter" element={<MitarbeiterPage />} />
+          <Route path="admin" element={<AdminPage />} />
+        </Route>
+      </Routes>
+    </HashRouter>
+  );
+}
+```
+
+## src/components/Layout.tsx
+```
+import { NavLink, Outlet } from 'react-router-dom';
+import { BookOpen, DoorOpen, FileText, GraduationCap, LayoutDashboard, Menu, Settings, Undo2, Users } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import ChatWidget from '@/components/ChatWidget';
+import { TopBar } from '@/components/TopBar';
+
+// ⚡ Customize these for your app
+const APP_TITLE = 'Dashboard';
+
+const IS_EMBED = new URLSearchParams(window.location.search).has('embed') || window.navigator.userAgent.startsWith('LivingAppsMobile');
+
+const navigation = [
+  { name: 'Übersicht', href: '/', icon: LayoutDashboard },
+  { name: 'Schulungstermine', href: '/schulungstermine', icon: BookOpen },
+  { name: 'Zertifikate', href: '/zertifikate', icon: FileText },
+  { name: 'Schulungsanmeldung', href: '/schulungsanmeldung', icon: BookOpen },
+  { name: 'Räume', href: '/raeume', icon: DoorOpen },
+  { name: 'Trainer', href: '/trainer', icon: GraduationCap },
+  { name: 'Bewertungen', href: '/bewertungen', icon: FileText },
+  { name: 'Teilnehmerverwaltung', href: '/teilnehmerverwaltung', icon: Users },
+  { name: 'Schulungskatalog', href: '/schulungskatalog', icon: BookOpen },
+  { name: 'Mitarbeiter', href: '/mitarbeiter', icon: Users },
+];
+
+const externalNavigation = [
+  { name: 'Schulungstermine', href: '/gateway/apps/693ffd1c598f914b8770d838?template=list_page', icon: BookOpen },
+  { name: 'Zertifikate', href: '/gateway/apps/69400b1ad27549fae3a988e8?template=list_page', icon: FileText },
+  { name: 'Schulungsanmeldung', href: '/gateway/apps/693ffd1ed4fbbcda56f1b83e?template=list_page', icon: BookOpen },
+  { name: 'Räume', href: '/gateway/apps/693ffd1ab347945f97bce858?template=list_page', icon: DoorOpen },
+  { name: 'Trainer', href: '/gateway/apps/693ffd1961c93d563b523829?template=list_page', icon: GraduationCap },
+  { name: 'Bewertungen', href: '/gateway/apps/693ffd1d0fd5fac77b223db6?template=list_page', icon: FileText },
+  { name: 'Teilnehmerverwaltung', href: '/gateway/apps/693ffd1c2abdda157f9b3873?template=list_page', icon: Users },
+  { name: 'Schulungskatalog', href: '/gateway/apps/693ffd1b64c092bd3fb64dec?template=list_page', icon: BookOpen },
+  { name: 'Mitarbeiter', href: '/gateway/apps/693ffd127128a18c7909c8d2?template=list_page', icon: Users },
+];
+
+export function Layout() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  useEffect(() => { document.title = APP_TITLE; }, []);
+
+  return (
+    <div className="min-h-screen bg-background">
+      {!IS_EMBED && (
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm" style={{ height: 'var(--topbar-h)' }}>
+        <div className="flex items-center justify-between h-full px-4 lg:px-8">
+          <div className="flex items-center gap-3 min-w-0">
+            <button
+              className="lg:hidden p-2 rounded-lg hover:bg-accent transition-colors"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+            >
+              <Menu size={18} />
+            </button>
+            <svg className="hidden lg:block w-9 h-9 shrink-0" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.6162 33.9164L20.4429 36.4084C20.4429 36.4084 13.4064 39.5929 9.85984 41.6434C7.73514 42.8719 6.93751 43.762 7.68335 44.356C8.00045 44.6086 18.7719 52.7814 19.1375 53.0247C23.2398 55.7549 15.79 45.2036 15.79 45.2036C15.79 45.2036 26.3397 41.899 28.5944 39.281C30.8491 36.6629 28.9112 33.9164 28.9112 33.9164C28.9112 33.9164 33.0253 35.5016 33.1876 39.281C33.289 41.6444 30.466 46.5779 28.9632 50.3787C28.063 52.6557 27.6349 53.4537 28.5898 53.4582C28.9958 53.4601 43.3581 53.5103 43.7947 53.4582C46.5726 53.1267 36.1923 50.3787 36.1923 50.3787C36.1923 50.3787 40.934 43.8566 42.0571 39.7543C42.7914 37.072 40.4732 33.4431 40.4732 33.4431C40.4732 33.4431 50.6098 36.1253 51.4017 35.4942C52.1937 34.8631 49.026 26.6585 49.026 26.6585C49.026 26.6585 57 22.8756 57 21.4556C57 20.0356 49.171 16.4028 49.171 16.4028C49.171 16.4028 49.8179 9.14493 48.3924 8.35603C46.967 7.56713 36.672 11.996 36.672 11.996C36.672 11.996 31.7464 3.51825 28.8955 3.51825C26.0446 3.51825 20.5168 11.996 20.5168 11.996C20.5168 11.996 11.3306 7.25157 10.0635 7.88269C8.79641 8.51381 8.47964 16.4028 8.47964 16.4028C8.47964 16.4028 0 20.1818 0 21.6019C0 23.0219 8.9548 26.6585 8.9548 26.6585C8.9548 26.6585 6.10388 35.0209 7.21257 35.4942C8.32126 35.9676 18.6162 33.9164 18.6162 33.9164Z" fill="#FF5C00"/>
+              <path d="M39.2754 22.6432C39.2754 24.6087 35.038 28.5398 28.6918 28.5398C22.3457 28.5398 18.1083 24.7599 18.1083 22.6432C18.1083 20.5265 22.3457 16.2931 28.6918 16.2931C35.038 16.2931 39.2754 20.6777 39.2754 22.6432Z" fill="white"/>
+              <path d="M31.4755 16.5827C32.7516 16.8524 33.9029 17.2929 34.9052 17.8249C36.2586 18.8904 37.1287 20.5421 37.1288 22.3981C37.1288 24.6151 35.8885 26.5416 34.0643 27.5241C33.4073 27.7869 32.6982 28.0121 31.9413 28.1823C31.7334 28.2048 31.5223 28.2174 31.3085 28.2174C28.0946 28.2172 25.4891 25.612 25.4891 22.3981C25.4892 21.683 25.6183 20.9978 25.8544 20.3649C26.2591 20.989 26.9614 21.4029 27.7606 21.403C29.0148 21.4028 30.0311 20.3857 30.0311 19.1315C30.0311 18.2656 29.5467 17.5126 28.8339 17.1295C29.5848 16.7762 30.4236 16.5788 31.3085 16.5788C31.3643 16.5788 31.42 16.5811 31.4755 16.5827Z" fill="black"/>
+            </svg>
+            <span className="font-semibold text-sm truncate">{APP_TITLE}</span>
+          </div>
+          <TopBar />
+        </div>
+      </header>
+      )}
+
+      {!IS_EMBED && sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 lg:hidden"
+          style={{ top: 'var(--topbar-h)' }}
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {!IS_EMBED && (
+      <aside
+        className={`
+          fixed left-0 z-40 w-72 bg-sidebar border-r border-sidebar-border overflow-hidden
+          transform transition-transform duration-200 ease-in-out
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+          lg:translate-x-0
+        `}
+        style={{ top: 'var(--topbar-h)', height: 'calc(100vh - var(--topbar-h))' }}
+      >
+        <div className="flex flex-col h-full">
+        <nav className="px-3 pt-4 space-y-0.5">
+          <a
+            href="/gateway/apps/693ffd1c598f914b8770d838?template=list_page"
+            className="flex items-center gap-2 px-4 py-2 rounded-2xl text-base transition-colors min-w-0 text-sidebar-foreground font-normal hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
+          >
+            <Undo2 size={16} className="shrink-0" />
+            <span className="truncate">Zurück</span>
+          </a>
+          <p className="px-4 pb-2 pt-2 text-xs font-medium text-muted-foreground">
+            Navigation
+          </p>
+          {/* Overview link */}
+          {navigation.slice(0, 1).map(item => {
+            const Icon = item.icon;
+            return (
+            <NavLink
+              key={item.href}
+              to={item.href}
+              end
+              onClick={() => setSidebarOpen(false)}
+              className={({ isActive }: { isActive: boolean }) =>
+                `flex items-center gap-2 px-4 py-2 rounded-2xl text-base transition-colors min-w-0 ${
+                  isActive
+                    ? 'bg-sidebar-accent text-sidebar-accent-foreground font-medium'
+                    : 'text-sidebar-foreground font-normal hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground'
+                }`
+              }
+            >
+              <Icon size={16} className="shrink-0" />
+              <span className="truncate">{item.name}</span>
+            </NavLink>
+            );
+          })}
+          {/* Entity links (external) */}
+          {externalNavigation.map(item => {
+            const Icon = item.icon;
+            return (
+            <a
+              key={item.href}
+              href={item.href}
+              className="flex items-center gap-2 px-4 py-2 rounded-2xl text-base transition-colors min-w-0 text-sidebar-foreground font-normal hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
+            >
+              <Icon size={16} className="shrink-0" />
+              <span className="truncate">{item.name}</span>
+            </a>
+            );
+          })}
+          {/* CRUD page links (hidden via .nav-crud-item { display: none } in index.css) */}
+          {navigation.slice(1).map(item => {
+            const Icon = item.icon;
+            return (
+            <NavLink
+              key={item.href}
+              to={item.href}
+              onClick={() => setSidebarOpen(false)}
+              className={({ isActive }: { isActive: boolean }) =>
+                `nav-crud-item flex items-center gap-2 px-4 py-2 rounded-2xl text-base transition-colors min-w-0 ${
+                  isActive
+                    ? 'bg-sidebar-accent text-sidebar-accent-foreground font-medium'
+                    : 'text-sidebar-foreground font-normal hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground'
+                }`
+              }
+            >
+              <Icon size={16} className="shrink-0" />
+              <span className="truncate">{item.name}</span>
+            </NavLink>
+            );
+          })}
+        </nav>
+
+        <div className="mt-auto px-3 pb-4">
+          <div className="border-t border-sidebar-border pt-3">
+            <NavLink
+              to='/admin'
+              onClick={() => setSidebarOpen(false)}
+              className={({ isActive }: { isActive: boolean }) =>
+                `flex items-center gap-2 px-4 py-2 rounded-2xl text-base transition-colors ${
+                  isActive
+                    ? 'bg-sidebar-accent text-sidebar-accent-foreground font-medium'
+                    : 'text-sidebar-foreground/60 font-normal hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground'
+                }`
+              }
+            >
+              <Settings size={16} className="shrink-0" />
+              <span className="truncate">Verwaltung</span>
+            </NavLink>
+          </div>
+        </div>
+        </div>
+      </aside>
+      )}
+
+      <div className={IS_EMBED ? "" : "lg:pl-72"} style={IS_EMBED ? undefined : { paddingTop: 'var(--topbar-h)' }}>
+        <main className={`max-w-screen-2xl ${IS_EMBED ? "p-2 lg:p-4" : "p-6 lg:p-8"}`}>
+          <Outlet />
+        </main>
+      </div>
+
+      {!IS_EMBED && <ChatWidget />}
+    </div>
+  );
+}
+```
+
+## src/hooks/useDashboardData.ts
+```
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import type { Schulungstermine, Zertifikate, Schulungsanmeldung, Raeume, Trainer, Bewertungen, Teilnehmerverwaltung, Schulungskatalog, Mitarbeiter } from '@/types/app';
+import { LivingAppsService } from '@/services/livingAppsService';
+
+export function useDashboardData() {
+  const [schulungstermine, setSchulungstermine] = useState<Schulungstermine[]>([]);
+  const [zertifikate, setZertifikate] = useState<Zertifikate[]>([]);
+  const [schulungsanmeldung, setSchulungsanmeldung] = useState<Schulungsanmeldung[]>([]);
+  const [raeume, setRaeume] = useState<Raeume[]>([]);
+  const [trainer, setTrainer] = useState<Trainer[]>([]);
+  const [bewertungen, setBewertungen] = useState<Bewertungen[]>([]);
+  const [teilnehmerverwaltung, setTeilnehmerverwaltung] = useState<Teilnehmerverwaltung[]>([]);
+  const [schulungskatalog, setSchulungskatalog] = useState<Schulungskatalog[]>([]);
+  const [mitarbeiter, setMitarbeiter] = useState<Mitarbeiter[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  const fetchAll = useCallback(async () => {
+    setError(null);
+    try {
+      const [schulungstermineData, zertifikateData, schulungsanmeldungData, raeumeData, trainerData, bewertungenData, teilnehmerverwaltungData, schulungskatalogData, mitarbeiterData] = await Promise.all([
+        LivingAppsService.getSchulungstermine(),
+        LivingAppsService.getZertifikate(),
+        LivingAppsService.getSchulungsanmeldung(),
+        LivingAppsService.getRaeume(),
+        LivingAppsService.getTrainer(),
+        LivingAppsService.getBewertungen(),
+        LivingAppsService.getTeilnehmerverwaltung(),
+        LivingAppsService.getSchulungskatalog(),
+        LivingAppsService.getMitarbeiter(),
+      ]);
+      setSchulungstermine(schulungstermineData);
+      setZertifikate(zertifikateData);
+      setSchulungsanmeldung(schulungsanmeldungData);
+      setRaeume(raeumeData);
+      setTrainer(trainerData);
+      setBewertungen(bewertungenData);
+      setTeilnehmerverwaltung(teilnehmerverwaltungData);
+      setSchulungskatalog(schulungskatalogData);
+      setMitarbeiter(mitarbeiterData);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error('Fehler beim Laden der Daten'));
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => { fetchAll(); }, [fetchAll]);
+
+  const schulungstermineMap = useMemo(() => {
+    const m = new Map<string, Schulungstermine>();
+    schulungstermine.forEach(r => m.set(r.record_id, r));
+    return m;
+  }, [schulungstermine]);
+
+  const raeumeMap = useMemo(() => {
+    const m = new Map<string, Raeume>();
+    raeume.forEach(r => m.set(r.record_id, r));
+    return m;
+  }, [raeume]);
+
+  const trainerMap = useMemo(() => {
+    const m = new Map<string, Trainer>();
+    trainer.forEach(r => m.set(r.record_id, r));
+    return m;
+  }, [trainer]);
+
+  const teilnehmerverwaltungMap = useMemo(() => {
+    const m = new Map<string, Teilnehmerverwaltung>();
+    teilnehmerverwaltung.forEach(r => m.set(r.record_id, r));
+    return m;
+  }, [teilnehmerverwaltung]);
+
+  const schulungskatalogMap = useMemo(() => {
+    const m = new Map<string, Schulungskatalog>();
+    schulungskatalog.forEach(r => m.set(r.record_id, r));
+    return m;
+  }, [schulungskatalog]);
+
+  const mitarbeiterMap = useMemo(() => {
+    const m = new Map<string, Mitarbeiter>();
+    mitarbeiter.forEach(r => m.set(r.record_id, r));
+    return m;
+  }, [mitarbeiter]);
+
+  return { schulungstermine, setSchulungstermine, zertifikate, setZertifikate, schulungsanmeldung, setSchulungsanmeldung, raeume, setRaeume, trainer, setTrainer, bewertungen, setBewertungen, teilnehmerverwaltung, setTeilnehmerverwaltung, schulungskatalog, setSchulungskatalog, mitarbeiter, setMitarbeiter, loading, error, fetchAll, schulungstermineMap, raeumeMap, trainerMap, teilnehmerverwaltungMap, schulungskatalogMap, mitarbeiterMap };
+}
+```
+
+## src/types/enriched.ts
+```
+import type { Bewertungen, Schulungsanmeldung, Schulungstermine, Teilnehmerverwaltung, Zertifikate } from './app';
+
+export type EnrichedSchulungstermine = Schulungstermine & {
+  schulungName: string;
+  trainerName: string;
+  raumName: string;
+};
+
+export type EnrichedZertifikate = Zertifikate & {
+  teilnahmeName: string;
+  empfaengerName: string;
+  schulungName: string;
+};
+
+export type EnrichedSchulungsanmeldung = Schulungsanmeldung & {
+  mitarbeiterName: string;
+  schulungsterminName: string;
+};
+
+export type EnrichedBewertungen = Bewertungen & {
+  teilnahmeName: string;
+};
+
+export type EnrichedTeilnehmerverwaltung = Teilnehmerverwaltung & {
+  schulungsterminName: string;
+  mitarbeiterName: string;
+};
+
+```
+
+## src/lib/enrich.ts
+```
+import type { EnrichedBewertungen, EnrichedSchulungsanmeldung, EnrichedSchulungstermine, EnrichedTeilnehmerverwaltung, EnrichedZertifikate } from '@/types/enriched';
+import type { Bewertungen, Mitarbeiter, Raeume, Schulungsanmeldung, Schulungskatalog, Schulungstermine, Teilnehmerverwaltung, Trainer, Zertifikate } from '@/types/app';
+import { extractRecordId } from '@/services/livingAppsService';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function resolveDisplay(url: unknown, map: Map<string, any>, ...fields: string[]): string {
+  if (!url) return '';
+  const id = extractRecordId(url);
+  if (!id) return '';
+  const r = map.get(id);
+  if (!r) return '';
+  return fields.map(f => String(r.fields[f] ?? '')).join(' ').trim();
+}
+
+interface SchulungstermineMaps {
+  schulungskatalogMap: Map<string, Schulungskatalog>;
+  trainerMap: Map<string, Trainer>;
+  raeumeMap: Map<string, Raeume>;
+}
+
+export function enrichSchulungstermine(
+  schulungstermine: Schulungstermine[],
+  maps: SchulungstermineMaps
+): EnrichedSchulungstermine[] {
+  return schulungstermine.map(r => ({
+    ...r,
+    schulungName: resolveDisplay(r.fields.schulung, maps.schulungskatalogMap, 'titel'),
+    trainerName: resolveDisplay(r.fields.trainer, maps.trainerMap, 'vorname', 'nachname'),
+    raumName: resolveDisplay(r.fields.raum, maps.raeumeMap, 'raumname'),
+  }));
+}
+
+interface ZertifikateMaps {
+  teilnehmerverwaltungMap: Map<string, Teilnehmerverwaltung>;
+  mitarbeiterMap: Map<string, Mitarbeiter>;
+  schulungskatalogMap: Map<string, Schulungskatalog>;
+}
+
+export function enrichZertifikate(
+  zertifikate: Zertifikate[],
+  maps: ZertifikateMaps
+): EnrichedZertifikate[] {
+  return zertifikate.map(r => ({
+    ...r,
+    teilnahmeName: resolveDisplay(r.fields.teilnahme, maps.teilnehmerverwaltungMap, 'bemerkungen'),
+    empfaengerName: resolveDisplay(r.fields.empfaenger, maps.mitarbeiterMap, 'vorname', 'nachname'),
+    schulungName: resolveDisplay(r.fields.schulung, maps.schulungskatalogMap, 'titel'),
+  }));
+}
+
+interface SchulungsanmeldungMaps {
+  mitarbeiterMap: Map<string, Mitarbeiter>;
+  schulungstermineMap: Map<string, Schulungstermine>;
+}
+
+export function enrichSchulungsanmeldung(
+  schulungsanmeldung: Schulungsanmeldung[],
+  maps: SchulungsanmeldungMaps
+): EnrichedSchulungsanmeldung[] {
+  return schulungsanmeldung.map(r => ({
+    ...r,
+    mitarbeiterName: resolveDisplay(r.fields.mitarbeiter, maps.mitarbeiterMap, 'vorname', 'nachname'),
+    schulungsterminName: resolveDisplay(r.fields.schulungstermin, maps.schulungstermineMap, 'bemerkungen'),
+  }));
+}
+
+interface BewertungenMaps {
+  teilnehmerverwaltungMap: Map<string, Teilnehmerverwaltung>;
+}
+
+export function enrichBewertungen(
+  bewertungen: Bewertungen[],
+  maps: BewertungenMaps
+): EnrichedBewertungen[] {
+  return bewertungen.map(r => ({
+    ...r,
+    teilnahmeName: resolveDisplay(r.fields.teilnahme, maps.teilnehmerverwaltungMap, 'bemerkungen'),
+  }));
+}
+
+interface TeilnehmerverwaltungMaps {
+  schulungstermineMap: Map<string, Schulungstermine>;
+  mitarbeiterMap: Map<string, Mitarbeiter>;
+}
+
+export function enrichTeilnehmerverwaltung(
+  teilnehmerverwaltung: Teilnehmerverwaltung[],
+  maps: TeilnehmerverwaltungMaps
+): EnrichedTeilnehmerverwaltung[] {
+  return teilnehmerverwaltung.map(r => ({
+    ...r,
+    schulungsterminName: resolveDisplay(r.fields.schulungstermin, maps.schulungstermineMap, 'bemerkungen'),
+    mitarbeiterName: resolveDisplay(r.fields.mitarbeiter, maps.mitarbeiterMap, 'vorname', 'nachname'),
+  }));
+}
+
+```
+
+## src/lib/formatters.ts
+```
+import { format, parseISO } from 'date-fns';
+import { de } from 'date-fns/locale';
+
+export function formatDate(s: string | undefined) {
+  if (!s) return '—';
+  try { return format(parseISO(s), 'dd.MM.yyyy', { locale: de }); } catch { return s; }
+}
+
+export function formatCurrency(v: number | undefined) {
+  if (v == null) return '—';
+  return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(v);
+}
+
+/** Extract display label from lookup/select or lookup/radio API response */
+export function displayLookup(val: unknown, options?: {key: string, label: string}[]): string {
+  if (val == null) return '—';
+  if (typeof val === 'object' && val !== null && 'label' in val) return String((val as Record<string, unknown>).label);
+  if (options && typeof val === 'string') { const m = options.find(o => o.key === val); if (m) return m.label; }
+  return String(val);
+}
+
+/** Extract labels from multiplelookup/checkbox API response */
+export function displayMultiLookup(val: unknown, options?: {key: string, label: string}[]): string {
+  if (val == null) return '—';
+  if (Array.isArray(val)) return val.map(v => {
+    if (typeof v === 'object' && v !== null && 'label' in v) return String((v as Record<string, unknown>).label);
+    if (options && typeof v === 'string') { const m = options.find(o => o.key === v); if (m) return m.label; }
+    return String(v);
+  }).join(', ') || '—';
+  return displayLookup(val, options);
+}
+
+/** Extract key from lookup value (handles both {key,label} objects and plain strings) */
+export function lookupKey(val: unknown): string | undefined {
+  if (val == null) return undefined;
+  if (typeof val === 'object' && val !== null && 'key' in val) return String((val as Record<string, unknown>).key);
+  if (typeof val === 'string') return val;
+  return undefined;
+}
+
+/** Extract keys from multiplelookup value */
+export function lookupKeys(val: unknown): string[] {
+  if (!Array.isArray(val)) return [];
+  return val.map(v => typeof v === 'object' && v !== null && 'key' in v ? String((v as Record<string, unknown>).key) : String(v));
+}
+```
+
+## src/lib/ai.ts
+```
+const AI_ENDPOINT = "https://my.living-apps.de/litellm/v1/chat/completions";
+const AI_MODEL = "default";
+
+export type ChatMessage = {
+  role: "system" | "user" | "assistant";
+  content: string | Array<{ type: string; [key: string]: unknown }>;
+};
+
+type CompletionOptions = {
+  temperature?: number;
+  max_tokens?: number;
+  top_p?: number;
+  stop?: string[];
+  response_format?: { type: string };
+};
+
+export async function chatCompletion(
+  messages: ChatMessage[],
+  options: CompletionOptions = {}
+): Promise<string> {
+  const res = await fetch(AI_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({ model: AI_MODEL, messages, ...options }),
+  });
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`AI API ${res.status}: ${body}`);
+  }
+  const data = await res.json();
+  return data.choices[0].message.content;
+}
+
+export async function safeJsonCompletion<T = unknown>(
+  messages: ChatMessage[],
+  options: CompletionOptions = {}
+): Promise<T> {
+  const raw = await chatCompletion(messages, options);
+  const match = raw.match(/\{[\s\S]*\}|\[[\s\S]*\]/);
+  if (!match) throw new Error(`Expected JSON but got: ${raw.slice(0, 200)}`);
+  return JSON.parse(match[0]);
+}
+
+export async function withRetry<T>(fn: () => Promise<T>, maxAttempts = 3): Promise<T> {
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      if (attempt === maxAttempts) throw err;
+      await new Promise((r) => setTimeout(r, 1000 * attempt));
+    }
+  }
+  throw new Error("unreachable");
+}
+
+// --- File encoding helpers ---
+
+const VISION_SUPPORTED_TYPES = new Set(["image/png", "image/jpeg", "image/webp", "image/gif"]);
+
+function needsImageConversion(file: File): boolean {
+  if (VISION_SUPPORTED_TYPES.has(file.type)) return false;
+  if (file.type.startsWith("image/")) return true;
+  const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
+  return ext === "heic" || ext === "heif";
+}
+
+function canvasConvertToJpeg(file: File): Promise<File> {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) { URL.revokeObjectURL(url); reject(new Error("Canvas not supported")); return; }
+      ctx.drawImage(img, 0, 0);
+      URL.revokeObjectURL(url);
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) { reject(new Error("Image conversion failed")); return; }
+          const name = file.name.replace(/\.[^.]+$/, ".jpg");
+          resolve(new File([blob], name, { type: "image/jpeg" }));
+        },
+        "image/jpeg",
+        0.92,
+      );
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error("Browser cannot decode this image natively"));
+    };
+    img.src = url;
+  });
+}
+
+let heicToLoaded: Promise<void> | null = null;
+
+function loadHeicTo(): Promise<void> {
+  if (heicToLoaded) return heicToLoaded;
+  heicToLoaded = new Promise((resolve, reject) => {
+    const s = document.createElement("script");
+    s.src = "https://my.living-apps.de/npm/heic-to/dist/iife/heic-to.js";
+    s.onload = () => resolve();
+    s.onerror = () => {
+      heicToLoaded = null;
+      reject(new Error("Failed to load HEIC converter"));
+    };
+    document.head.appendChild(s);
+  });
+  return heicToLoaded;
+}
+
+async function heicFallbackConvert(file: File): Promise<File> {
+  await loadHeicTo();
+  const HT = (window as any).HeicTo;
+  if (!HT) throw new Error("HEIC converter not available");
+  const blob: Blob = await HT({
+    blob: file,
+    type: "image/jpeg",
+    quality: 0.92,
+  });
+  const name = file.name.replace(/\.[^.]+$/, ".jpg");
+  return new File([blob], name, { type: "image/jpeg" });
+}
+
+async function convertToJpeg(file: File): Promise<File> {
+  try {
+    return await canvasConvertToJpeg(file);
+  } catch {
+    return await heicFallbackConvert(file);
+  }
+}
+
+function readExifFromJpeg(buf: ArrayBuffer): DataView | null {
+  const view = new DataView(buf);
+  if (view.getUint16(0) !== 0xFFD8) return null;
+  let offset = 2;
+  while (offset < view.byteLength - 4) {
+    const marker = view.getUint16(offset);
+    if (marker === 0xFFE1) {
+      const len = view.getUint16(offset + 2);
+      const exifStart = offset + 4;
+      if (exifStart + 6 <= buf.byteLength
+          && view.getUint32(exifStart) === 0x45786966
+          && view.getUint16(exifStart + 4) === 0x0000) {
+        return new DataView(buf, exifStart + 6, len - 8);
+      }
+    }
+    if ((marker & 0xFF00) !== 0xFF00) break;
+    offset += 2 + view.getUint16(offset + 2);
+  }
+  return null;
+}
+
+function readExifFromHeic(buf: ArrayBuffer): DataView | null {
+  const view = new DataView(buf);
+  for (let s = 0; s < view.byteLength - 14; s++) {
+    if (view.getUint32(s) === 0x45786966 && view.getUint16(s + 4) === 0x0000) {
+      const t = s + 6;
+      const bo = view.getUint16(t);
+      if ((bo === 0x4949 || bo === 0x4D4D) && view.getUint16(t + 2, bo === 0x4949) === 42) {
+        return new DataView(buf, t);
+      }
+    }
+  }
+  return null;
+}
+
+function parseExifMeta(tiff: DataView): {
+  gps: { latitude: number; longitude: number } | null;
+  dateTime: string | null;
+} | null {
+  const len = tiff.byteLength;
+  if (len < 8) return null;
+  const le = tiff.getUint16(0) === 0x4949;
+  const g16 = (o: number) => o + 2 <= len ? tiff.getUint16(o, le) : 0;
+  const g32 = (o: number) => o + 4 <= len ? tiff.getUint32(o, le) : 0;
+  const rational = (o: number) => { const n = g32(o), d = g32(o + 4); return d ? n / d : 0; };
+  const ascii = (o: number, n: number) => {
+    let s = "";
+    for (let i = 0; i < n - 1 && o + i < len; i++) s += String.fromCharCode(tiff.getUint8(o + i));
+    return s;
+  };
+
+  const ifdOffset = g32(4);
+  if (!ifdOffset || ifdOffset + 2 > len) return null;
+  const count = g16(ifdOffset);
+  if (ifdOffset + 2 + count * 12 > len) return null;
+
+  let gpsOffset = 0, exifIfdOffset = 0, ifd0DateTime = "";
+  for (let i = 0; i < count; i++) {
+    const entry = ifdOffset + 2 + i * 12;
+    const tag = g16(entry);
+    if (tag === 0x8825) gpsOffset = g32(entry + 8);
+    if (tag === 0x8769) exifIfdOffset = g32(entry + 8);
+    if (tag === 0x0132) {
+      const cnt = g32(entry + 4);
+      const off = g32(entry + 8);
+      if (cnt >= 19 && off + cnt <= len) ifd0DateTime = ascii(off, cnt);
+    }
+  }
+
+  let dateTime: string | null = null;
+  if (exifIfdOffset && exifIfdOffset + 2 <= len) {
+    const exifCount = g16(exifIfdOffset);
+    if (exifIfdOffset + 2 + exifCount * 12 <= len) {
+      for (let i = 0; i < exifCount; i++) {
+        const entry = exifIfdOffset + 2 + i * 12;
+        if (g16(entry) === 0x9003) {
+          const cnt = g32(entry + 4);
+          const off = g32(entry + 8);
+          if (cnt >= 19 && off + cnt <= len) dateTime = ascii(off, cnt);
+          break;
+        }
+      }
+    }
+  }
+  if (!dateTime && ifd0DateTime) dateTime = ifd0DateTime;
+
+  let gps: { latitude: number; longitude: number } | null = null;
+  if (gpsOffset && gpsOffset + 2 <= len) {
+    const gpsCount = g16(gpsOffset);
+    if (gpsOffset + 2 + gpsCount * 12 <= len) {
+      let latRef = "", lngRef = "";
+      let latOff = 0, lngOff = 0;
+      for (let i = 0; i < gpsCount; i++) {
+        const entry = gpsOffset + 2 + i * 12;
+        const tag = g16(entry);
+        if (tag === 1) latRef = String.fromCharCode(tiff.getUint8(entry + 8));
+        if (tag === 2) latOff = g32(entry + 8);
+        if (tag === 3) lngRef = String.fromCharCode(tiff.getUint8(entry + 8));
+        if (tag === 4) lngOff = g32(entry + 8);
+      }
+      if (latOff && lngOff && latOff + 24 <= len && lngOff + 24 <= len) {
+        const toDec = (off: number) => rational(off) + rational(off + 8) / 60 + rational(off + 16) / 3600;
+        let latitude = toDec(latOff);
+        let longitude = toDec(lngOff);
+        if (latRef === "S") latitude = -latitude;
+        if (lngRef === "W") longitude = -longitude;
+        gps = { latitude, longitude };
+      }
+    }
+  }
+
+  if (!gps && !dateTime) return null;
+  return { gps, dateTime };
+}
+
+export async function extractPhotoMeta(file: File): Promise<{
+  gps: { latitude: number; longitude: number } | null;
+  dateTime: string | null;
+} | null> {
+  try {
+    const buf = await file.arrayBuffer();
+    const tiff = readExifFromJpeg(buf) ?? readExifFromHeic(buf);
+    if (!tiff) return null;
+    return parseExifMeta(tiff);
+  } catch {
+    return null;
+  }
+}
+
+export async function reverseGeocode(lat: number, lng: number): Promise<string> {
+  try {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&accept-language=${navigator.language}`
+    );
+    const data = await res.json();
+    return data.display_name ?? "";
+  } catch {
+    return "";
+  }
+}
+
+export async function fileToDataUri(file: File): Promise<string> {
+  let f = file;
+  if (needsImageConversion(f)) {
+    f = await convertToJpeg(f);
+  }
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(new Error("Failed to read file"));
+    reader.readAsDataURL(f);
+  });
+}
+
+export async function urlToDataUri(url: string): Promise<string> {
+  const res = await fetch(url);
+  const blob = await res.blob();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(new Error("Failed to encode file"));
+    reader.readAsDataURL(blob);
+  });
+}
+
+/** Convert a data URI back to a Blob (for file uploads) */
+export function dataUriToBlob(dataUri: string): Blob {
+  const [header, base64] = dataUri.split(',');
+  const mime = header.match(/:(.*?);/)?.[1] ?? 'application/octet-stream';
+  const bytes = atob(base64);
+  const arr = new Uint8Array(bytes.length);
+  for (let i = 0; i < bytes.length; i++) arr[i] = bytes.charCodeAt(i);
+  return new Blob([arr], { type: mime });
+}
+
+// --- High-level AI features ---
+
+export async function classify(
+  text: string,
+  categories: string[]
+): Promise<{ category: string; confidence: number }> {
+  return safeJsonCompletion([
+    {
+      role: "system",
+      content: [
+        "You are a classifier. Respond ONLY with valid JSON, nothing else.",
+        'Output format: {"category": "<one of the allowed categories>", "confidence": <0-1>}',
+        `Allowed categories: ${JSON.stringify(categories)}`,
+      ].join("\n"),
+    },
+    { role: "user", content: text },
+  ], { temperature: 0 });
+}
+
+export async function extract<T = Record<string, unknown>>(
+  text: string,
+  schemaDescription: string
+): Promise<T> {
+  return safeJsonCompletion([
+    {
+      role: "system",
+      content: [
+        "You are a data extraction engine. Respond ONLY with valid JSON matching the requested schema.",
+        "If a field cannot be determined from the input, use null.",
+        `Schema:\n${schemaDescription}`,
+      ].join("\n"),
+    },
+    { role: "user", content: text },
+  ], { temperature: 0 });
+}
+
+export async function summarize(
+  text: string,
+  options: { maxSentences?: number; language?: string } = {}
+): Promise<string> {
+  const { maxSentences = 3, language } = options;
+  const instructions = [
+    `Summarize the following text in at most ${maxSentences} sentences.`,
+    "Be concise and preserve key facts.",
+  ];
+  if (language) instructions.push(`Write the summary in ${language}.`);
+  return chatCompletion([
+    { role: "system", content: instructions.join(" ") },
+    { role: "user", content: text },
+  ]);
+}
+
+export async function translate(
+  text: string,
+  targetLanguage: string,
+  sourceLanguage?: string
+): Promise<string> {
+  const from = sourceLanguage ? ` from ${sourceLanguage}` : "";
+  return chatCompletion([
+    {
+      role: "system",
+      content: `Translate the following text${from} to ${targetLanguage}. Output ONLY the translation, nothing else.`,
+    },
+    { role: "user", content: text },
+  ]);
+}
+
+export async function analyzeImage(imageDataUri: string, prompt: string): Promise<string> {
+  return chatCompletion([
+    {
+      role: "user",
+      content: [
+        { type: "text", text: prompt },
+        { type: "image_url", image_url: { url: imageDataUri } },
+      ],
+    },
+  ]);
+}
+
+export async function analyzeDocument(fileDataUri: string, prompt: string): Promise<string> {
+  return chatCompletion([
+    {
+      role: "user",
+      content: [
+        { type: "text", text: prompt },
+        { type: "file", file: { file_data: fileDataUri } },
+      ],
+    },
+  ]);
+}
+
+export async function extractFromPhoto<T = Record<string, unknown>>(
+  dataUri: string,
+  schemaDescription: string,
+  photoContext?: string,
+  intent?: string
+): Promise<T> {
+  const isImage = dataUri.startsWith("data:image/");
+  const fileContent = isImage
+    ? { type: "image_url" as const, image_url: { url: dataUri } }
+    : { type: "file" as const, file: { file_data: dataUri } };
+  const systemParts = [
+    "Extract structured data from the provided " + (isImage ? "image" : "document") + ".",
+    "Respond ONLY with valid JSON matching the schema.",
+    "Use null for any field that cannot be determined.",
+  ];
+  if (intent) {
+    systemParts.push(`<user-intent>${intent}</user-intent>`);
+  }
+  if (photoContext) {
+    systemParts.push(photoContext);
+  }
+  systemParts.push(`Schema:\n${schemaDescription}`);
+  return safeJsonCompletion([
+    {
+      role: "system",
+      content: systemParts.join("\n"),
+    },
+    {
+      role: "user",
+      content: [
+        { type: "text", text: "Extract the data from this " + (isImage ? "image" : "document") + "." },
+        fileContent,
+      ],
+    },
+  ]);
+}
+
+```
+
+## src/lib/chat-context.ts
+```
+export const CHAT_SYSTEM_PROMPT = `Du bist ein hilfreicher Assistent für diese App.\n\nDie App verwaltet folgende Daten:\n- Schulungstermine: Schulung (→ Schulungskatalog), Startdatum und -uhrzeit (Datum), Enddatum und -uhrzeit (Datum), Trainer (→ Trainer), Raum (→ Räume), Status, Verfügbare Plätze (Zahl), Bemerkungen\n- Zertifikate: Teilnahme (→ Teilnehmerverwaltung), Empfänger (→ Mitarbeiter), Schulung (→ Schulungskatalog), Zertifikatstyp, Zertifikatsnummer, Beschreibung der Leistung/Kurs, Name des Ausstellers, Position des Ausstellers, Unterschrift (Dateiname/Bild), Siegel (Dateiname/Bild), Logo (Dateiname/Bild), Zertifikatsvorlage, Hintergrundfarbe, Schriftart & -größe, Layoutwünsche, QR-Code für digitale Überprüfung, Digitale Signatur integriert (ja/nein), Social-Media-Elemente, Status, Ausstellungsdatum (Datum)\n- Schulungsanmeldung: Ihr Name (→ Mitarbeiter), Gewünschter Schulungstermin (→ Schulungstermine), Bemerkungen\n- Räume: Raumname, Standort, Kapazität (Anzahl Personen) (Zahl), Verfügbare Ausstattung, Bemerkungen\n- Trainer: Vorname, Nachname, Trainer-Typ, E-Mail, Telefon, Expertise-Bereiche, Qualifikationen & Zertifikate\n- Bewertungen: Teilnahme (→ Teilnehmerverwaltung), Gesamtbewertung, Bewertung Inhalt, Bewertung Organisation, Kommentar, Verbesserungsvorschläge, Bewertung Trainer\n- Teilnehmerverwaltung: Schulungstermin (→ Schulungstermine), Anmeldedatum (Datum), Status, Anwesenheit bestätigt (ja/nein), Bemerkungen, Mitarbeiter (→ Mitarbeiter), Zertifikat ausgestellt (ja/nein)\n- Schulungskatalog: Kategorie, Dauer (in Tagen) (Zahl), Maximale Teilnehmerzahl (Zahl), Zielgruppe, Lernziele, Voraussetzungen, Schulungstitel, Beschreibung, E-Learning-Dateien (z.B. PDF, Video, SCORM)\n- Mitarbeiter: Nachname, Personalnummer, Telefon, Abteilung, Vorname, E-Mail, Position\n\nDu kannst:\n- Fragen zur App und den Daten beantworten\n- Hochgeladene Bilder und Dokumente analysieren\n- Texte zusammenfassen oder übersetzen\n- Bei der Dateneingabe helfen\n\nAntworte kurz und präzise. Verwende die gleiche Sprache wie der Nutzer.`;
+
+```
+
+## src/config/ai-features.ts
+```
+/**
+ * AI feature toggles per entity.
+ * Set to true to show "Foto scannen" button in the create/edit dialog.
+ * The agent can change these values — all other AI files are pre-generated.
+ */
+
+export const AI_PHOTO_SCAN: Record<string, boolean> = {
+  Schulungstermine: true,
+  Zertifikate: true,
+  Schulungsanmeldung: true,
+  Raeume: true,
+  Trainer: true,
+  Bewertungen: true,
+  Teilnehmerverwaltung: true,
+  Schulungskatalog: true,
+  Mitarbeiter: true,
+};
+
+/**
+ * Extract GPS coordinates from photo EXIF metadata and use them
+ * to provide location context (reverse geocoding) to the AI extraction
+ * and to auto-populate geo fields.
+ */
+export const AI_PHOTO_LOCATION: Record<string, boolean> = {
+  Schulungstermine: true,
+  Zertifikate: true,
+  Schulungsanmeldung: true,
+  Raeume: true,
+  Trainer: true,
+  Bewertungen: true,
+  Teilnehmerverwaltung: true,
+  Schulungskatalog: true,
+  Mitarbeiter: true,
+};
+```
+
+## src/pages/AdminPage.tsx
+```
+import { useState, useMemo, useCallback } from 'react';
+import { useDashboardData } from '@/hooks/useDashboardData';
+import type { Schulungstermine, Zertifikate, Schulungsanmeldung, Raeume, Trainer, Bewertungen, Teilnehmerverwaltung, Schulungskatalog, Mitarbeiter } from '@/types/app';
+import { LivingAppsService, extractRecordId, cleanFieldsForApi } from '@/services/livingAppsService';
+import { SchulungstermineDialog } from '@/components/dialogs/SchulungstermineDialog';
+import { SchulungstermineViewDialog } from '@/components/dialogs/SchulungstermineViewDialog';
+import { ZertifikateDialog } from '@/components/dialogs/ZertifikateDialog';
+import { ZertifikateViewDialog } from '@/components/dialogs/ZertifikateViewDialog';
+import { SchulungsanmeldungDialog } from '@/components/dialogs/SchulungsanmeldungDialog';
+import { SchulungsanmeldungViewDialog } from '@/components/dialogs/SchulungsanmeldungViewDialog';
+import { RaeumeDialog } from '@/components/dialogs/RaeumeDialog';
+import { RaeumeViewDialog } from '@/components/dialogs/RaeumeViewDialog';
+import { TrainerDialog } from '@/components/dialogs/TrainerDialog';
+import { TrainerViewDialog } from '@/components/dialogs/TrainerViewDialog';
+import { BewertungenDialog } from '@/components/dialogs/BewertungenDialog';
+import { BewertungenViewDialog } from '@/components/dialogs/BewertungenViewDialog';
+import { TeilnehmerverwaltungDialog } from '@/components/dialogs/TeilnehmerverwaltungDialog';
+import { TeilnehmerverwaltungViewDialog } from '@/components/dialogs/TeilnehmerverwaltungViewDialog';
+import { SchulungskatalogDialog } from '@/components/dialogs/SchulungskatalogDialog';
+import { SchulungskatalogViewDialog } from '@/components/dialogs/SchulungskatalogViewDialog';
+import { MitarbeiterDialog } from '@/components/dialogs/MitarbeiterDialog';
+import { MitarbeiterViewDialog } from '@/components/dialogs/MitarbeiterViewDialog';
+import { BulkEditDialog } from '@/components/dialogs/BulkEditDialog';
+import { ConfirmDialog } from '@/components/ConfirmDialog';
+import { PageShell } from '@/components/PageShell';
+import { AI_PHOTO_SCAN, AI_PHOTO_LOCATION } from '@/config/ai-features';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import {
+  Table, TableBody, TableCell, TableHead,
+  TableHeader, TableRow,
+} from '@/components/ui/table';
+import {
+  Select, SelectContent, SelectItem,
+  SelectTrigger, SelectValue,
+} from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Pencil, Trash2, Plus, Filter, X, ArrowUpDown, ArrowUp, ArrowDown, Search, Copy, FileText } from 'lucide-react';
+import { format, parseISO } from 'date-fns';
+import { de } from 'date-fns/locale';
+
+function fmtDate(d?: string) {
+  if (!d) return '—';
+  try { return format(parseISO(d), 'dd.MM.yyyy', { locale: de }); } catch { return d; }
+}
+
+// Field metadata per entity for bulk edit and column filters
+const SCHULUNGSTERMINE_FIELDS = [
+  { key: 'schulung', label: 'Schulung', type: 'applookup/select', targetEntity: 'schulungskatalog', targetAppId: 'SCHULUNGSKATALOG', displayField: 'titel' },
+  { key: 'startdatum', label: 'Startdatum und -uhrzeit', type: 'date/datetimeminute' },
+  { key: 'enddatum', label: 'Enddatum und -uhrzeit', type: 'date/datetimeminute' },
+  { key: 'trainer', label: 'Trainer', type: 'applookup/select', targetEntity: 'trainer', targetAppId: 'TRAINER', displayField: 'vorname' },
+  { key: 'raum', label: 'Raum', type: 'applookup/select', targetEntity: 'raeume', targetAppId: 'RAEUME', displayField: 'raumname' },
+  { key: 'status', label: 'Status', type: 'lookup/select', options: [{ key: 'geplant', label: 'Geplant' }, { key: 'bestaetigt', label: 'Bestätigt' }, { key: 'durchgefuehrt', label: 'Durchgeführt' }, { key: 'abgesagt', label: 'Abgesagt' }] },
+  { key: 'verfuegbare_plaetze', label: 'Verfügbare Plätze', type: 'number' },
+  { key: 'bemerkungen', label: 'Bemerkungen', type: 'string/textarea' },
+];
+const ZERTIFIKATE_FIELDS = [
+  { key: 'teilnahme', label: 'Teilnahme', type: 'applookup/select', targetEntity: 'teilnehmerverwaltung', targetAppId: 'TEILNEHMERVERWALTUNG', displayField: 'bemerkungen' },
+  { key: 'empfaenger', label: 'Empfänger', type: 'applookup/select', targetEntity: 'mitarbeiter', targetAppId: 'MITARBEITER', displayField: 'nachname' },
+  { key: 'schulung', label: 'Schulung', type: 'applookup/select', targetEntity: 'schulungskatalog', targetAppId: 'SCHULUNGSKATALOG', displayField: 'titel' },
+  { key: 'zertifikatstyp', label: 'Zertifikatstyp', type: 'lookup/select', options: [{ key: 'teilnahmebestaetigung', label: 'Teilnahmebestätigung' }, { key: 'abschlusszertifikat', label: 'Abschlusszertifikat' }] },
+  { key: 'zertifikatsnummer', label: 'Zertifikatsnummer', type: 'string/text' },
+  { key: 'beschreibung', label: 'Beschreibung der Leistung/Kurs', type: 'string/textarea' },
+  { key: 'aussteller', label: 'Name des Ausstellers', type: 'string/text' },
+  { key: 'aussteller_position', label: 'Position des Ausstellers', type: 'string/text' },
+  { key: 'unterschrift', label: 'Unterschrift (Dateiname/Bild)', type: 'string/text' },
+  { key: 'siegel', label: 'Siegel (Dateiname/Bild)', type: 'string/text' },
+  { key: 'logo', label: 'Logo (Dateiname/Bild)', type: 'string/text' },
+  { key: 'vorlage', label: 'Zertifikatsvorlage', type: 'lookup/select', options: [{ key: 'klassisch', label: 'Klassisch' }, { key: 'modern', label: 'Modern' }, { key: 'individuell', label: 'Individuell' }] },
+  { key: 'hintergrundfarbe', label: 'Hintergrundfarbe', type: 'lookup/select', options: [{ key: 'weiss', label: 'Weiß' }, { key: 'blau', label: 'Blau' }, { key: 'gruen', label: 'Grün' }, { key: 'gelb', label: 'Gelb' }, { key: 'individuell', label: 'Individuell' }] },
+  { key: 'schriftart', label: 'Schriftart & -größe', type: 'string/text' },
+  { key: 'layoutwuensche', label: 'Layoutwünsche', type: 'string/textarea' },
+  { key: 'qr_code_url', label: 'QR-Code für digitale Überprüfung', type: 'string/text' },
+  { key: 'digitale_signatur', label: 'Digitale Signatur integriert', type: 'bool' },
+  { key: 'social_media', label: 'Social-Media-Elemente', type: 'string/text' },
+  { key: 'status', label: 'Status', type: 'lookup/select', options: [{ key: 'aktiv', label: 'Aktiv' }, { key: 'inaktiv', label: 'Inaktiv' }, { key: 'widerrufen', label: 'Widerrufen' }] },
+  { key: 'ausstellungsdatum', label: 'Ausstellungsdatum', type: 'date/date' },
+];
+const SCHULUNGSANMELDUNG_FIELDS = [
+  { key: 'mitarbeiter', label: 'Ihr Name', type: 'applookup/select', targetEntity: 'mitarbeiter', targetAppId: 'MITARBEITER', displayField: 'nachname' },
+  { key: 'schulungstermin', label: 'Gewünschter Schulungstermin', type: 'applookup/select', targetEntity: 'schulungstermine', targetAppId: 'SCHULUNGSTERMINE', displayField: 'bemerkungen' },
+  { key: 'bemerkungen', label: 'Bemerkungen', type: 'string/textarea' },
+];
+const RAEUME_FIELDS = [
+  { key: 'raumname', label: 'Raumname', type: 'string/text' },
+  { key: 'standort', label: 'Standort', type: 'string/text' },
+  { key: 'kapazitaet', label: 'Kapazität (Anzahl Personen)', type: 'number' },
+  { key: 'ausstattung', label: 'Verfügbare Ausstattung', type: 'multiplelookup/checkbox', options: [{ key: 'beamer', label: 'Beamer' }, { key: 'whiteboard', label: 'Whiteboard' }, { key: 'flipchart', label: 'Flipchart' }, { key: 'computer', label: 'Computer' }, { key: 'wlan', label: 'WLAN' }, { key: 'videokonferenz', label: 'Videokonferenz' }, { key: 'klimaanlage', label: 'Klimaanlage' }, { key: 'barrierefrei', label: 'Barrierefreier Zugang' }] },
+  { key: 'bemerkungen', label: 'Bemerkungen', type: 'string/textarea' },
+];
+const TRAINER_FIELDS = [
+  { key: 'vorname', label: 'Vorname', type: 'string/text' },
+  { key: 'nachname', label: 'Nachname', type: 'string/text' },
+  { key: 'typ', label: 'Trainer-Typ', type: 'lookup/select', options: [{ key: 'extern', label: 'Extern' }, { key: 'intern', label: 'Intern' }] },
+  { key: 'email', label: 'E-Mail', type: 'string/email' },
+  { key: 'telefon', label: 'Telefon', type: 'string/tel' },
+  { key: 'expertise', label: 'Expertise-Bereiche', type: 'multiplelookup/checkbox', options: [{ key: 'it_software', label: 'IT & Software' }, { key: 'fuehrung_management', label: 'Führung & Management' }, { key: 'kommunikation', label: 'Kommunikation' }, { key: 'projektmanagement', label: 'Projektmanagement' }, { key: 'vertrieb_marketing', label: 'Vertrieb & Marketing' }, { key: 'compliance_recht', label: 'Compliance & Recht' }, { key: 'gesundheit_sicherheit', label: 'Gesundheit & Sicherheit' }, { key: 'persoenliche_entwicklung', label: 'Persönliche Entwicklung' }] },
+  { key: 'qualifikationen', label: 'Qualifikationen & Zertifikate', type: 'string/textarea' },
+];
+const BEWERTUNGEN_FIELDS = [
+  { key: 'teilnahme', label: 'Teilnahme', type: 'applookup/select', targetEntity: 'teilnehmerverwaltung', targetAppId: 'TEILNEHMERVERWALTUNG', displayField: 'bemerkungen' },
+  { key: 'gesamtbewertung', label: 'Gesamtbewertung', type: 'lookup/radio', options: [{ key: 'rating_1', label: '1 - Sehr schlecht' }, { key: 'rating_2', label: '2 - Schlecht' }, { key: 'rating_3', label: '3 - Befriedigend' }, { key: 'rating_4', label: '4 - Gut' }, { key: 'rating_5', label: '5 - Sehr gut' }] },
+  { key: 'inhaltsbewertung', label: 'Bewertung Inhalt', type: 'lookup/radio', options: [{ key: 'rating_1', label: '1 - Sehr schlecht' }, { key: 'rating_2', label: '2 - Schlecht' }, { key: 'rating_3', label: '3 - Befriedigend' }, { key: 'rating_4', label: '4 - Gut' }, { key: 'rating_5', label: '5 - Sehr gut' }] },
+  { key: 'organisationsbewertung', label: 'Bewertung Organisation', type: 'lookup/radio', options: [{ key: 'rating_1', label: '1 - Sehr schlecht' }, { key: 'rating_2', label: '2 - Schlecht' }, { key: 'rating_3', label: '3 - Befriedigend' }, { key: 'rating_4', label: '4 - Gut' }, { key: 'rating_5', label: '5 - Sehr gut' }] },
+  { key: 'kommentar', label: 'Kommentar', type: 'string/textarea' },
+  { key: 'verbesserungsvorschlaege', label: 'Verbesserungsvorschläge', type: 'string/textarea' },
+  { key: 'trainerbewertung', label: 'Bewertung Trainer', type: 'lookup/radio', options: [{ key: 'rating_1', label: '1 - Sehr schlecht' }, { key: 'rating_2', label: '2 - Schlecht' }, { key: 'rating_3', label: '3 - Befriedigend' }, { key: 'rating_4', label: '4 - Gut' }, { key: 'rating_5', label: '5 - Sehr gut' }] },
+];
+const TEILNEHMERVERWALTUNG_FIELDS = [
+  { key: 'schulungstermin', label: 'Schulungstermin', type: 'applookup/select', targetEntity: 'schulungstermine', targetAppId: 'SCHULUNGSTERMINE', displayField: 'bemerkungen' },
+  { key: 'anmeldedatum', label: 'Anmeldedatum', type: 'date/date' },
+  { key: 'status', label: 'Status', type: 'lookup/select', options: [{ key: 'angemeldet', label: 'Angemeldet' }, { key: 'warteliste', label: 'Warteliste' }, { key: 'teilgenommen', label: 'Teilgenommen' }, { key: 'abgesagt', label: 'Abgesagt' }, { key: 'nicht_erschienen', label: 'Nicht erschienen' }] },
+  { key: 'anwesenheit', label: 'Anwesenheit bestätigt', type: 'bool' },
+  { key: 'bemerkungen', label: 'Bemerkungen', type: 'string/textarea' },
+  { key: 'mitarbeiter', label: 'Mitarbeiter', type: 'applookup/select', targetEntity: 'mitarbeiter', targetAppId: 'MITARBEITER', displayField: 'nachname' },
+  { key: 'zertifikat_ausgestellt', label: 'Zertifikat ausgestellt', type: 'bool' },
+];
+const SCHULUNGSKATALOG_FIELDS = [
+  { key: 'kategorie', label: 'Kategorie', type: 'lookup/select', options: [{ key: 'it_software', label: 'IT & Software' }, { key: 'fuehrung_management', label: 'Führung & Management' }, { key: 'kommunikation', label: 'Kommunikation' }, { key: 'projektmanagement', label: 'Projektmanagement' }, { key: 'vertrieb_marketing', label: 'Vertrieb & Marketing' }, { key: 'compliance_recht', label: 'Compliance & Recht' }, { key: 'gesundheit_sicherheit', label: 'Gesundheit & Sicherheit' }, { key: 'persoenliche_entwicklung', label: 'Persönliche Entwicklung' }] },
+  { key: 'dauer_tage', label: 'Dauer (in Tagen)', type: 'number' },
+  { key: 'max_teilnehmer', label: 'Maximale Teilnehmerzahl', type: 'number' },
+  { key: 'zielgruppe', label: 'Zielgruppe', type: 'string/text' },
+  { key: 'lernziele', label: 'Lernziele', type: 'string/textarea' },
+  { key: 'voraussetzungen', label: 'Voraussetzungen', type: 'string/textarea' },
+  { key: 'titel', label: 'Schulungstitel', type: 'string/text' },
+  { key: 'beschreibung', label: 'Beschreibung', type: 'string/textarea' },
+  { key: 'elearning_dateien', label: 'E-Learning-Dateien (z.B. PDF, Video, SCORM)', type: 'file' },
+];
+const MITARBEITER_FIELDS = [
+  { key: 'nachname', label: 'Nachname', type: 'string/text' },
+  { key: 'personalnummer', label: 'Personalnummer', type: 'string/text' },
+  { key: 'telefon', label: 'Telefon', type: 'string/tel' },
+  { key: 'abteilung', label: 'Abteilung', type: 'string/text' },
+  { key: 'vorname', label: 'Vorname', type: 'string/text' },
+  { key: 'email', label: 'E-Mail', type: 'string/email' },
+  { key: 'position', label: 'Position', type: 'string/text' },
+];
+
+const ENTITY_TABS = [
+  { key: 'schulungstermine', label: 'Schulungstermine', pascal: 'Schulungstermine' },
+  { key: 'zertifikate', label: 'Zertifikate', pascal: 'Zertifikate' },
+  { key: 'schulungsanmeldung', label: 'Schulungsanmeldung', pascal: 'Schulungsanmeldung' },
+  { key: 'raeume', label: 'Räume', pascal: 'Raeume' },
+  { key: 'trainer', label: 'Trainer', pascal: 'Trainer' },
+  { key: 'bewertungen', label: 'Bewertungen', pascal: 'Bewertungen' },
+  { key: 'teilnehmerverwaltung', label: 'Teilnehmerverwaltung', pascal: 'Teilnehmerverwaltung' },
+  { key: 'schulungskatalog', label: 'Schulungskatalog', pascal: 'Schulungskatalog' },
+  { key: 'mitarbeiter', label: 'Mitarbeiter', pascal: 'Mitarbeiter' },
+] as const;
+
+type EntityKey = typeof ENTITY_TABS[number]['key'];
+
+export default function AdminPage() {
+  const data = useDashboardData();
+  const { loading, error, fetchAll } = data;
+
+  const [activeTab, setActiveTab] = useState<EntityKey>('schulungstermine');
+  const [selectedIds, setSelectedIds] = useState<Record<EntityKey, Set<string>>>(() => ({
+    schulungstermine: new Set(),
+    zertifikate: new Set(),
+    schulungsanmeldung: new Set(),
+    raeume: new Set(),
+    trainer: new Set(),
+    bewertungen: new Set(),
+    teilnehmerverwaltung: new Set(),
+    schulungskatalog: new Set(),
+    mitarbeiter: new Set(),
+  }));
+  const [filters, setFilters] = useState<Record<EntityKey, Record<string, string>>>(() => ({
+    schulungstermine: {},
+    zertifikate: {},
+    schulungsanmeldung: {},
+    raeume: {},
+    trainer: {},
+    bewertungen: {},
+    teilnehmerverwaltung: {},
+    schulungskatalog: {},
+    mitarbeiter: {},
+  }));
+  const [showFilters, setShowFilters] = useState(false);
+  const [dialogState, setDialogState] = useState<{ entity: EntityKey; record: any } | null>(null);
+  const [createEntity, setCreateEntity] = useState<EntityKey | null>(null);
+  const [deleteTargets, setDeleteTargets] = useState<{ entity: EntityKey; ids: string[] } | null>(null);
+  const [bulkEditOpen, setBulkEditOpen] = useState<EntityKey | null>(null);
+  const [viewState, setViewState] = useState<{ entity: EntityKey; record: any } | null>(null);
+  const [bulkLoading, setBulkLoading] = useState(false);
+  const [sortKey, setSortKey] = useState('');
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
+  const [search, setSearch] = useState('');
+
+  const getRecords = useCallback((entity: EntityKey) => {
+    switch (entity) {
+      case 'schulungstermine': return (data as any).schulungstermine as Schulungstermine[] ?? [];
+      case 'zertifikate': return (data as any).zertifikate as Zertifikate[] ?? [];
+      case 'schulungsanmeldung': return (data as any).schulungsanmeldung as Schulungsanmeldung[] ?? [];
+      case 'raeume': return (data as any).raeume as Raeume[] ?? [];
+      case 'trainer': return (data as any).trainer as Trainer[] ?? [];
+      case 'bewertungen': return (data as any).bewertungen as Bewertungen[] ?? [];
+      case 'teilnehmerverwaltung': return (data as any).teilnehmerverwaltung as Teilnehmerverwaltung[] ?? [];
+      case 'schulungskatalog': return (data as any).schulungskatalog as Schulungskatalog[] ?? [];
+      case 'mitarbeiter': return (data as any).mitarbeiter as Mitarbeiter[] ?? [];
+      default: return [];
+    }
+  }, [data]);
+
+  const getLookupLists = useCallback((entity: EntityKey) => {
+    const lists: Record<string, any[]> = {};
+    switch (entity) {
+      case 'schulungstermine':
+        lists.schulungskatalogList = (data as any).schulungskatalog ?? [];
+        lists.trainerList = (data as any).trainer ?? [];
+        lists.raeumeList = (data as any).raeume ?? [];
+        break;
+      case 'zertifikate':
+        lists.teilnehmerverwaltungList = (data as any).teilnehmerverwaltung ?? [];
+        lists.mitarbeiterList = (data as any).mitarbeiter ?? [];
+        lists.schulungskatalogList = (data as any).schulungskatalog ?? [];
+        break;
+      case 'schulungsanmeldung':
+        lists.mitarbeiterList = (data as any).mitarbeiter ?? [];
+        lists.schulungstermineList = (data as any).schulungstermine ?? [];
+        break;
+      case 'bewertungen':
+        lists.teilnehmerverwaltungList = (data as any).teilnehmerverwaltung ?? [];
+        break;
+      case 'teilnehmerverwaltung':
+        lists.schulungstermineList = (data as any).schulungstermine ?? [];
+        lists.mitarbeiterList = (data as any).mitarbeiter ?? [];
+        break;
+    }
+    return lists;
+  }, [data]);
+
+  const getApplookupDisplay = useCallback((entity: EntityKey, fieldKey: string, url?: unknown) => {
+    if (!url) return '—';
+    const id = extractRecordId(url);
+    if (!id) return '—';
+    const lists = getLookupLists(entity);
+    void fieldKey; // ensure used for noUnusedParameters
+    if (entity === 'schulungstermine' && fieldKey === 'schulung') {
+      const match = (lists.schulungskatalogList ?? []).find((r: any) => r.record_id === id);
+      return match?.fields.titel ?? '—';
+    }
+    if (entity === 'schulungstermine' && fieldKey === 'trainer') {
+      const match = (lists.trainerList ?? []).find((r: any) => r.record_id === id);
+      return match?.fields.vorname ?? '—';
+    }
+    if (entity === 'schulungstermine' && fieldKey === 'raum') {
+      const match = (lists.raeumeList ?? []).find((r: any) => r.record_id === id);
+      return match?.fields.raumname ?? '—';
+    }
+    if (entity === 'zertifikate' && fieldKey === 'teilnahme') {
+      const match = (lists.teilnehmerverwaltungList ?? []).find((r: any) => r.record_id === id);
+      return match?.fields.bemerkungen ?? '—';
+    }
+    if (entity === 'zertifikate' && fieldKey === 'empfaenger') {
+      const match = (lists.mitarbeiterList ?? []).find((r: any) => r.record_id === id);
+      return match?.fields.nachname ?? '—';
+    }
+    if (entity === 'zertifikate' && fieldKey === 'schulung') {
+      const match = (lists.schulungskatalogList ?? []).find((r: any) => r.record_id === id);
+      return match?.fields.titel ?? '—';
+    }
+    if (entity === 'schulungsanmeldung' && fieldKey === 'mitarbeiter') {
+      const match = (lists.mitarbeiterList ?? []).find((r: any) => r.record_id === id);
+      return match?.fields.nachname ?? '—';
+    }
+    if (entity === 'schulungsanmeldung' && fieldKey === 'schulungstermin') {
+      const match = (lists.schulungstermineList ?? []).find((r: any) => r.record_id === id);
+      return match?.fields.bemerkungen ?? '—';
+    }
+    if (entity === 'bewertungen' && fieldKey === 'teilnahme') {
+      const match = (lists.teilnehmerverwaltungList ?? []).find((r: any) => r.record_id === id);
+      return match?.fields.bemerkungen ?? '—';
+    }
+    if (entity === 'teilnehmerverwaltung' && fieldKey === 'schulungstermin') {
+      const match = (lists.schulungstermineList ?? []).find((r: any) => r.record_id === id);
+      return match?.fields.bemerkungen ?? '—';
+    }
+    if (entity === 'teilnehmerverwaltung' && fieldKey === 'mitarbeiter') {
+      const match = (lists.mitarbeiterList ?? []).find((r: any) => r.record_id === id);
+      return match?.fields.nachname ?? '—';
+    }
+    return String(url);
+  }, [getLookupLists]);
+
+  const getFieldMeta = useCallback((entity: EntityKey) => {
+    switch (entity) {
+      case 'schulungstermine': return SCHULUNGSTERMINE_FIELDS;
+      case 'zertifikate': return ZERTIFIKATE_FIELDS;
+      case 'schulungsanmeldung': return SCHULUNGSANMELDUNG_FIELDS;
+      case 'raeume': return RAEUME_FIELDS;
+      case 'trainer': return TRAINER_FIELDS;
+      case 'bewertungen': return BEWERTUNGEN_FIELDS;
+      case 'teilnehmerverwaltung': return TEILNEHMERVERWALTUNG_FIELDS;
+      case 'schulungskatalog': return SCHULUNGSKATALOG_FIELDS;
+      case 'mitarbeiter': return MITARBEITER_FIELDS;
+      default: return [];
+    }
+  }, []);
+
+  const getFilteredRecords = useCallback((entity: EntityKey) => {
+    const records = getRecords(entity);
+    const s = search.toLowerCase();
+    const searched = !s ? records : records.filter((r: any) => {
+      return Object.values(r.fields).some((v: any) => {
+        if (v == null) return false;
+        if (Array.isArray(v)) return v.some((item: any) => typeof item === 'object' && item !== null && 'label' in item ? String((item as any).label).toLowerCase().includes(s) : String(item).toLowerCase().includes(s));
+        if (typeof v === 'object' && 'label' in (v as any)) return String((v as any).label).toLowerCase().includes(s);
+        return String(v).toLowerCase().includes(s);
+      });
+    });
+    const entityFilters = filters[entity] ?? {};
+    const fieldMeta = getFieldMeta(entity);
+    return searched.filter((r: any) => {
+      return fieldMeta.every((fm: any) => {
+        const fv = entityFilters[fm.key];
+        if (!fv || fv === '') return true;
+        const val = r.fields?.[fm.key];
+        if (fm.type === 'bool') {
+          if (fv === 'true') return val === true;
+          if (fv === 'false') return val !== true;
+          return true;
+        }
+        if (fm.type === 'lookup/select' || fm.type === 'lookup/radio') {
+          const label = val && typeof val === 'object' && 'label' in val ? val.label : '';
+          return String(label).toLowerCase().includes(fv.toLowerCase());
+        }
+        if (fm.type.includes('multiplelookup')) {
+          if (!Array.isArray(val)) return false;
+          return val.some((item: any) => String(item?.label ?? '').toLowerCase().includes(fv.toLowerCase()));
+        }
+        if (fm.type.includes('applookup')) {
+          const display = getApplookupDisplay(entity, fm.key, val);
+          return String(display).toLowerCase().includes(fv.toLowerCase());
+        }
+        return String(val ?? '').toLowerCase().includes(fv.toLowerCase());
+      });
+    });
+  }, [getRecords, filters, getFieldMeta, getApplookupDisplay, search]);
+
+  function toggleSort(key: string) {
+    if (sortKey === key) {
+      if (sortDir === 'asc') setSortDir('desc');
+      else { setSortKey(''); setSortDir('asc'); }
+    } else { setSortKey(key); setSortDir('asc'); }
+  }
+
+  function sortRecords<T extends { fields: Record<string, any> }>(recs: T[]): T[] {
+    if (!sortKey) return recs;
+    return [...recs].sort((a, b) => {
+      let va: any = a.fields[sortKey], vb: any = b.fields[sortKey];
+      if (va == null && vb == null) return 0;
+      if (va == null) return 1;
+      if (vb == null) return -1;
+      if (typeof va === 'object' && 'label' in va) va = va.label;
+      if (typeof vb === 'object' && 'label' in vb) vb = vb.label;
+      if (typeof va === 'number' && typeof vb === 'number') return sortDir === 'asc' ? va - vb : vb - va;
+      return sortDir === 'asc' ? String(va).localeCompare(String(vb)) : String(vb).localeCompare(String(va));
+    });
+  }
+
+  const toggleSelect = useCallback((entity: EntityKey, id: string) => {
+    setSelectedIds(prev => {
+      const next = { ...prev, [entity]: new Set(prev[entity]) };
+      if (next[entity].has(id)) next[entity].delete(id);
+      else next[entity].add(id);
+      return next;
+    });
+  }, []);
+
+  const toggleSelectAll = useCallback((entity: EntityKey) => {
+    const filtered = getFilteredRecords(entity);
+    setSelectedIds(prev => {
+      const allSelected = filtered.every((r: any) => prev[entity].has(r.record_id));
+      const next = { ...prev, [entity]: new Set(prev[entity]) };
+      if (allSelected) {
+        filtered.forEach((r: any) => next[entity].delete(r.record_id));
+      } else {
+        filtered.forEach((r: any) => next[entity].add(r.record_id));
+      }
+      return next;
+    });
+  }, [getFilteredRecords]);
+
+  const clearSelection = useCallback((entity: EntityKey) => {
+    setSelectedIds(prev => ({ ...prev, [entity]: new Set() }));
+  }, []);
+
+  const getServiceMethods = useCallback((entity: EntityKey) => {
+    switch (entity) {
+      case 'schulungstermine': return {
+        create: (fields: any) => LivingAppsService.createSchulungstermineEntry(fields),
+        update: (id: string, fields: any) => LivingAppsService.updateSchulungstermineEntry(id, fields),
+        remove: (id: string) => LivingAppsService.deleteSchulungstermineEntry(id),
+      };
+      case 'zertifikate': return {
+        create: (fields: any) => LivingAppsService.createZertifikateEntry(fields),
+        update: (id: string, fields: any) => LivingAppsService.updateZertifikateEntry(id, fields),
+        remove: (id: string) => LivingAppsService.deleteZertifikateEntry(id),
+      };
+      case 'schulungsanmeldung': return {
+        create: (fields: any) => LivingAppsService.createSchulungsanmeldungEntry(fields),
+        update: (id: string, fields: any) => LivingAppsService.updateSchulungsanmeldungEntry(id, fields),
+        remove: (id: string) => LivingAppsService.deleteSchulungsanmeldungEntry(id),
+      };
+      case 'raeume': return {
+        create: (fields: any) => LivingAppsService.createRaeumeEntry(fields),
+        update: (id: string, fields: any) => LivingAppsService.updateRaeumeEntry(id, fields),
+        remove: (id: string) => LivingAppsService.deleteRaeumeEntry(id),
+      };
+      case 'trainer': return {
+        create: (fields: any) => LivingAppsService.createTrainerEntry(fields),
+        update: (id: string, fields: any) => LivingAppsService.updateTrainerEntry(id, fields),
+        remove: (id: string) => LivingAppsService.deleteTrainerEntry(id),
+      };
+      case 'bewertungen': return {
+        create: (fields: any) => LivingAppsService.createBewertungenEntry(fields),
+        update: (id: string, fields: any) => LivingAppsService.updateBewertungenEntry(id, fields),
+        remove: (id: string) => LivingAppsService.deleteBewertungenEntry(id),
+      };
+      case 'teilnehmerverwaltung': return {
+        create: (fields: any) => LivingAppsService.createTeilnehmerverwaltungEntry(fields),
+        update: (id: string, fields: any) => LivingAppsService.updateTeilnehmerverwaltungEntry(id, fields),
+        remove: (id: string) => LivingAppsService.deleteTeilnehmerverwaltungEntry(id),
+      };
+      case 'schulungskatalog': return {
+        create: (fields: any) => LivingAppsService.createSchulungskatalogEntry(fields),
+        update: (id: string, fields: any) => LivingAppsService.updateSchulungskatalogEntry(id, fields),
+        remove: (id: string) => LivingAppsService.deleteSchulungskatalogEntry(id),
+      };
+      case 'mitarbeiter': return {
+        create: (fields: any) => LivingAppsService.createMitarbeiterEntry(fields),
+        update: (id: string, fields: any) => LivingAppsService.updateMitarbeiterEntry(id, fields),
+        remove: (id: string) => LivingAppsService.deleteMitarbeiterEntry(id),
+      };
+      default: return null;
+    }
+  }, []);
+
+  async function handleCreate(entity: EntityKey, fields: any) {
+    const svc = getServiceMethods(entity);
+    if (!svc) return;
+    await svc.create(fields);
+    fetchAll();
+    setCreateEntity(null);
+  }
+
+  async function handleUpdate(fields: any) {
+    if (!dialogState) return;
+    const svc = getServiceMethods(dialogState.entity);
+    if (!svc) return;
+    await svc.update(dialogState.record.record_id, fields);
+    fetchAll();
+    setDialogState(null);
+  }
+
+  async function handleBulkDelete() {
+    if (!deleteTargets) return;
+    const svc = getServiceMethods(deleteTargets.entity);
+    if (!svc) return;
+    setBulkLoading(true);
+    try {
+      for (const id of deleteTargets.ids) {
+        await svc.remove(id);
+      }
+      clearSelection(deleteTargets.entity);
+      fetchAll();
+    } finally {
+      setBulkLoading(false);
+      setDeleteTargets(null);
+    }
+  }
+
+  async function handleBulkClone() {
+    const svc = getServiceMethods(activeTab);
+    if (!svc) return;
+    setBulkLoading(true);
+    try {
+      const records = getRecords(activeTab);
+      const ids = Array.from(selectedIds[activeTab]);
+      for (const id of ids) {
+        const rec = records.find((r: any) => r.record_id === id);
+        if (!rec) continue;
+        const clean = cleanFieldsForApi(rec.fields, activeTab);
+        await svc.create(clean as any);
+      }
+      clearSelection(activeTab);
+      fetchAll();
+    } finally {
+      setBulkLoading(false);
+    }
+  }
+
+  async function handleBulkEdit(fieldKey: string, value: any) {
+    if (!bulkEditOpen) return;
+    const svc = getServiceMethods(bulkEditOpen);
+    if (!svc) return;
+    setBulkLoading(true);
+    try {
+      const ids = Array.from(selectedIds[bulkEditOpen]);
+      for (const id of ids) {
+        await svc.update(id, { [fieldKey]: value });
+      }
+      clearSelection(bulkEditOpen);
+      fetchAll();
+    } finally {
+      setBulkLoading(false);
+      setBulkEditOpen(null);
+    }
+  }
+
+  function updateFilter(entity: EntityKey, fieldKey: string, value: string) {
+    setFilters(prev => ({
+      ...prev,
+      [entity]: { ...prev[entity], [fieldKey]: value },
+    }));
+  }
+
+  function clearEntityFilters(entity: EntityKey) {
+    setFilters(prev => ({ ...prev, [entity]: {} }));
+  }
+
+  const activeFilterCount = useMemo(() => {
+    const f = filters[activeTab] ?? {};
+    return Object.values(f).filter(v => v && v !== '').length;
+  }, [filters, activeTab]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-32">
+        <div className="animate-spin h-8 w-8 border-2 border-primary border-t-transparent rounded-full" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center py-32 gap-4">
+        <p className="text-destructive">{error.message}</p>
+        <Button onClick={fetchAll}>Erneut versuchen</Button>
+      </div>
+    );
+  }
+
+  const filtered = getFilteredRecords(activeTab);
+  const sel = selectedIds[activeTab];
+  const allFiltered = filtered.every((r: any) => sel.has(r.record_id)) && filtered.length > 0;
+  const fieldMeta = getFieldMeta(activeTab);
+
+  return (
+    <PageShell
+      title="Verwaltung"
+      subtitle="Alle Daten verwalten"
+      action={
+        <Button onClick={() => setCreateEntity(activeTab)} className="shrink-0">
+          <Plus className="h-4 w-4 mr-2" /> Hinzufügen
+        </Button>
+      }
+    >
+      <div className="flex gap-2 flex-wrap">
+        {ENTITY_TABS.map(tab => {
+          const count = getRecords(tab.key).length;
+          return (
+            <button
+              key={tab.key}
+              onClick={() => { setActiveTab(tab.key); setSearch(''); setSortKey(''); setSortDir('asc'); fetchAll(); }}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 ${
+                activeTab === tab.key
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
+              }`}
+            >
+              {tab.label}
+              <Badge variant="secondary" className="ml-1 text-xs">{count}</Badge>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="flex items-center justify-between gap-4 flex-wrap">
+        <div className="flex items-center gap-2">
+          <div className="relative w-full max-w-sm">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Suchen..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              className="pl-9 h-9"
+            />
+          </div>
+          <Button variant="outline" size="sm" onClick={() => setShowFilters(f => !f)} className="gap-2">
+            <Filter className="h-4 w-4" />
+            Filtern
+            {activeFilterCount > 0 && (
+              <Badge variant="secondary" className="ml-1">{activeFilterCount}</Badge>
+            )}
+          </Button>
+          {activeFilterCount > 0 && (
+            <Button variant="ghost" size="sm" onClick={() => clearEntityFilters(activeTab)}>
+              Filter zurücksetzen
+            </Button>
+          )}
+        </div>
+        {sel.size > 0 && (
+          <div className="flex items-center gap-2 flex-wrap bg-muted/60 rounded-lg px-3 py-1.5">
+            <span className="text-sm font-medium">{sel.size} ausgewählt</span>
+            <Button variant="outline" size="sm" onClick={() => setBulkEditOpen(activeTab)}>
+              <Pencil className="h-3.5 w-3.5 sm:mr-1" /> <span className="hidden sm:inline">Feld bearbeiten</span>
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => handleBulkClone()}>
+              <Copy className="h-3.5 w-3.5 sm:mr-1" /> <span className="hidden sm:inline">Kopieren</span>
+            </Button>
+            <Button variant="destructive" size="sm" onClick={() => setDeleteTargets({ entity: activeTab, ids: Array.from(sel) })}>
+              <Trash2 className="h-3.5 w-3.5 sm:mr-1" /> <span className="hidden sm:inline">Ausgewählte löschen</span>
+            </Button>
+            <Button variant="ghost" size="sm" onClick={() => clearSelection(activeTab)}>
+              <X className="h-3.5 w-3.5 sm:mr-1" /> <span className="hidden sm:inline">Auswahl aufheben</span>
+            </Button>
+          </div>
+        )}
+      </div>
+
+      {showFilters && (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-4 rounded-lg border bg-muted/30">
+          {fieldMeta.map((fm: any) => (
+            <div key={fm.key} className="space-y-1">
+              <label className="text-xs font-medium text-muted-foreground">{fm.label}</label>
+              {fm.type === 'bool' ? (
+                <Select value={filters[activeTab]?.[fm.key] ?? ''} onValueChange={v => updateFilter(activeTab, fm.key, v === 'all' ? '' : v)}>
+                  <SelectTrigger className="h-8 text-xs"><SelectValue placeholder="Alle" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Alle</SelectItem>
+                    <SelectItem value="true">Ja</SelectItem>
+                    <SelectItem value="false">Nein</SelectItem>
+                  </SelectContent>
+                </Select>
+              ) : fm.type === 'lookup/select' || fm.type === 'lookup/radio' ? (
+                <Select value={filters[activeTab]?.[fm.key] ?? ''} onValueChange={v => updateFilter(activeTab, fm.key, v === 'all' ? '' : v)}>
+                  <SelectTrigger className="h-8 text-xs"><SelectValue placeholder="Alle" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Alle</SelectItem>
+                    {fm.options?.map((o: any) => (
+                      <SelectItem key={o.key} value={o.label}>{o.label}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              ) : (
+                <Input
+                  className="h-8 text-xs"
+                  placeholder="Filtern..."
+                  value={filters[activeTab]?.[fm.key] ?? ''}
+                  onChange={e => updateFilter(activeTab, fm.key, e.target.value)}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="rounded-[27px] bg-card shadow-lg overflow-x-auto">
+        <Table className="[&_tbody_td]:px-6 [&_tbody_td]:py-2 [&_tbody_td]:text-base [&_tbody_td]:font-medium [&_tbody_tr:first-child_td]:pt-6 [&_tbody_tr:last-child_td]:pb-10">
+          <TableHeader className="bg-secondary">
+            <TableRow className="border-b border-input">
+              <TableHead className="w-10 px-6">
+                <Checkbox
+                  checked={allFiltered}
+                  onCheckedChange={() => toggleSelectAll(activeTab)}
+                />
+              </TableHead>
+              {fieldMeta.map((fm: any) => (
+                <TableHead key={fm.key} className="uppercase text-xs font-semibold text-secondary-foreground tracking-wider px-6 cursor-pointer select-none hover:text-foreground transition-colors" onClick={() => toggleSort(fm.key)}>
+                  <span className="inline-flex items-center gap-1">
+                    {fm.label}
+                    {sortKey === fm.key ? (sortDir === 'asc' ? <ArrowUp size={14} /> : <ArrowDown size={14} />) : <ArrowUpDown size={14} className="opacity-30" />}
+                  </span>
+                </TableHead>
+              ))}
+              <TableHead className="w-24 uppercase text-xs font-semibold text-secondary-foreground tracking-wider px-6">Aktionen</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {sortRecords(filtered).map((record: any) => (
+              <TableRow key={record.record_id} className={`transition-colors cursor-pointer ${sel.has(record.record_id) ? "bg-primary/5" : "hover:bg-muted/50"}`} onClick={(e) => { if ((e.target as HTMLElement).closest('button, [role="checkbox"]')) return; setViewState({ entity: activeTab, record }); }}>
+                <TableCell>
+                  <Checkbox
+                    checked={sel.has(record.record_id)}
+                    onCheckedChange={() => toggleSelect(activeTab, record.record_id)}
+                  />
+                </TableCell>
+                {fieldMeta.map((fm: any) => {
+                  const val = record.fields?.[fm.key];
+                  if (fm.type === 'bool') {
+                    return (
+                      <TableCell key={fm.key}>
+                        <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
+                          val ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'
+                        }`}>
+                          {val ? 'Ja' : 'Nein'}
+                        </span>
+                      </TableCell>
+                    );
+                  }
+                  if (fm.type === 'lookup/select' || fm.type === 'lookup/radio') {
+                    return <TableCell key={fm.key}><span className="inline-flex items-center bg-secondary border border-[#bfdbfe] text-[#2563eb] rounded-[10px] px-2 py-1 text-sm font-medium">{val?.label ?? '—'}</span></TableCell>;
+                  }
+                  if (fm.type.includes('multiplelookup')) {
+                    return <TableCell key={fm.key}>{Array.isArray(val) ? val.map((v: any) => v?.label ?? v).join(', ') : '—'}</TableCell>;
+                  }
+                  if (fm.type.includes('applookup')) {
+                    return <TableCell key={fm.key}><span className="inline-flex items-center bg-secondary border border-[#bfdbfe] text-[#2563eb] rounded-[10px] px-2 py-1 text-sm font-medium">{getApplookupDisplay(activeTab, fm.key, val)}</span></TableCell>;
+                  }
+                  if (fm.type.includes('date')) {
+                    return <TableCell key={fm.key} className="text-muted-foreground">{fmtDate(val)}</TableCell>;
+                  }
+                  if (fm.type.startsWith('file')) {
+                    return (
+                      <TableCell key={fm.key}>
+                        {val ? (
+                          <div className="relative h-8 w-8 rounded bg-muted overflow-hidden">
+                            <img src={val} alt="" className="h-full w-full object-cover" onError={e => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                          </div>
+                        ) : '—'}
+                      </TableCell>
+                    );
+                  }
+                  if (fm.type === 'string/textarea') {
+                    return <TableCell key={fm.key} className="max-w-xs"><span className="truncate block">{val ?? '—'}</span></TableCell>;
+                  }
+                  if (fm.type === 'geo') {
+                    return (
+                      <TableCell key={fm.key} className="max-w-[200px]">
+                        <span className="truncate block" title={val ? `${val.lat}, ${val.long}` : undefined}>
+                          {val?.info ?? (val ? `${val.lat?.toFixed(4)}, ${val.long?.toFixed(4)}` : '—')}
+                        </span>
+                      </TableCell>
+                    );
+                  }
+                  return <TableCell key={fm.key}>{val ?? '—'}</TableCell>;
+                })}
+                <TableCell>
+                  <div className="flex gap-1">
+                    <Button variant="ghost" size="icon" onClick={() => setDialogState({ entity: activeTab, record })}>
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon" onClick={() => setDeleteTargets({ entity: activeTab, ids: [record.record_id] })}>
+                      <Trash2 className="h-4 w-4 text-destructive" />
+                    </Button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+            {filtered.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={fieldMeta.length + 2} className="text-center py-16 text-muted-foreground">
+                  Keine Ergebnisse gefunden.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+
+      {(createEntity === 'schulungstermine' || dialogState?.entity === 'schulungstermine') && (
+        <SchulungstermineDialog
+          open={createEntity === 'schulungstermine' || dialogState?.entity === 'schulungstermine'}
+          onClose={() => { setCreateEntity(null); setDialogState(null); }}
+          onSubmit={dialogState?.entity === 'schulungstermine' ? handleUpdate : (fields: any) => handleCreate('schulungstermine', fields)}
+          defaultValues={dialogState?.entity === 'schulungstermine' ? dialogState.record?.fields : undefined}
+          schulungskatalogList={(data as any).schulungskatalog ?? []}
+          trainerList={(data as any).trainer ?? []}
+          raeumeList={(data as any).raeume ?? []}
+          enablePhotoScan={AI_PHOTO_SCAN['Schulungstermine']}
+          enablePhotoLocation={AI_PHOTO_LOCATION['Schulungstermine']}
+        />
+      )}
+      {(createEntity === 'zertifikate' || dialogState?.entity === 'zertifikate') && (
+        <ZertifikateDialog
+          open={createEntity === 'zertifikate' || dialogState?.entity === 'zertifikate'}
+          onClose={() => { setCreateEntity(null); setDialogState(null); }}
+          onSubmit={dialogState?.entity === 'zertifikate' ? handleUpdate : (fields: any) => handleCreate('zertifikate', fields)}
+          defaultValues={dialogState?.entity === 'zertifikate' ? dialogState.record?.fields : undefined}
+          teilnehmerverwaltungList={(data as any).teilnehmerverwaltung ?? []}
+          mitarbeiterList={(data as any).mitarbeiter ?? []}
+          schulungskatalogList={(data as any).schulungskatalog ?? []}
+          enablePhotoScan={AI_PHOTO_SCAN['Zertifikate']}
+          enablePhotoLocation={AI_PHOTO_LOCATION['Zertifikate']}
+        />
+      )}
+      {(createEntity === 'schulungsanmeldung' || dialogState?.entity === 'schulungsanmeldung') && (
+        <SchulungsanmeldungDialog
+          open={createEntity === 'schulungsanmeldung' || dialogState?.entity === 'schulungsanmeldung'}
+          onClose={() => { setCreateEntity(null); setDialogState(null); }}
+          onSubmit={dialogState?.entity === 'schulungsanmeldung' ? handleUpdate : (fields: any) => handleCreate('schulungsanmeldung', fields)}
+          defaultValues={dialogState?.entity === 'schulungsanmeldung' ? dialogState.record?.fields : undefined}
+          mitarbeiterList={(data as any).mitarbeiter ?? []}
+          schulungstermineList={(data as any).schulungstermine ?? []}
+          enablePhotoScan={AI_PHOTO_SCAN['Schulungsanmeldung']}
+          enablePhotoLocation={AI_PHOTO_LOCATION['Schulungsanmeldung']}
+        />
+      )}
+      {(createEntity === 'raeume' || dialogState?.entity === 'raeume') && (
+        <RaeumeDialog
+          open={createEntity === 'raeume' || dialogState?.entity === 'raeume'}
+          onClose={() => { setCreateEntity(null); setDialogState(null); }}
+          onSubmit={dialogState?.entity === 'raeume' ? handleUpdate : (fields: any) => handleCreate('raeume', fields)}
+          defaultValues={dialogState?.entity === 'raeume' ? dialogState.record?.fields : undefined}
+          enablePhotoScan={AI_PHOTO_SCAN['Raeume']}
+          enablePhotoLocation={AI_PHOTO_LOCATION['Raeume']}
+        />
+      )}
+      {(createEntity === 'trainer' || dialogState?.entity === 'trainer') && (
+        <TrainerDialog
+          open={createEntity === 'trainer' || dialogState?.entity === 'trainer'}
+          onClose={() => { setCreateEntity(null); setDialogState(null); }}
+          onSubmit={dialogState?.entity === 'trainer' ? handleUpdate : (fields: any) => handleCreate('trainer', fields)}
+          defaultValues={dialogState?.entity === 'trainer' ? dialogState.record?.fields : undefined}
+          enablePhotoScan={AI_PHOTO_SCAN['Trainer']}
+          enablePhotoLocation={AI_PHOTO_LOCATION['Trainer']}
+        />
+      )}
+      {(createEntity === 'bewertungen' || dialogState?.entity === 'bewertungen') && (
+        <BewertungenDialog
+          open={createEntity === 'bewertungen' || dialogState?.entity === 'bewertungen'}
+          onClose={() => { setCreateEntity(null); setDialogState(null); }}
+          onSubmit={dialogState?.entity === 'bewertungen' ? handleUpdate : (fields: any) => handleCreate('bewertungen', fields)}
+          defaultValues={dialogState?.entity === 'bewertungen' ? dialogState.record?.fields : undefined}
+          teilnehmerverwaltungList={(data as any).teilnehmerverwaltung ?? []}
+          enablePhotoScan={AI_PHOTO_SCAN['Bewertungen']}
+          enablePhotoLocation={AI_PHOTO_LOCATION['Bewertungen']}
+        />
+      )}
+      {(createEntity === 'teilnehmerverwaltung' || dialogState?.entity === 'teilnehmerverwaltung') && (
+        <TeilnehmerverwaltungDialog
+          open={createEntity === 'teilnehmerverwaltung' || dialogState?.entity === 'teilnehmerverwaltung'}
+          onClose={() => { setCreateEntity(null); setDialogState(null); }}
+          onSubmit={dialogState?.entity === 'teilnehmerverwaltung' ? handleUpdate : (fields: any) => handleCreate('teilnehmerverwaltung', fields)}
+          defaultValues={dialogState?.entity === 'teilnehmerverwaltung' ? dialogState.record?.fields : undefined}
+          schulungstermineList={(data as any).schulungstermine ?? []}
+          mitarbeiterList={(data as any).mitarbeiter ?? []}
+          enablePhotoScan={AI_PHOTO_SCAN['Teilnehmerverwaltung']}
+          enablePhotoLocation={AI_PHOTO_LOCATION['Teilnehmerverwaltung']}
+        />
+      )}
+      {(createEntity === 'schulungskatalog' || dialogState?.entity === 'schulungskatalog') && (
+        <SchulungskatalogDialog
+          open={createEntity === 'schulungskatalog' || dialogState?.entity === 'schulungskatalog'}
+          onClose={() => { setCreateEntity(null); setDialogState(null); }}
+          onSubmit={dialogState?.entity === 'schulungskatalog' ? handleUpdate : (fields: any) => handleCreate('schulungskatalog', fields)}
+          defaultValues={dialogState?.entity === 'schulungskatalog' ? dialogState.record?.fields : undefined}
+          enablePhotoScan={AI_PHOTO_SCAN['Schulungskatalog']}
+          enablePhotoLocation={AI_PHOTO_LOCATION['Schulungskatalog']}
+        />
+      )}
+      {(createEntity === 'mitarbeiter' || dialogState?.entity === 'mitarbeiter') && (
+        <MitarbeiterDialog
+          open={createEntity === 'mitarbeiter' || dialogState?.entity === 'mitarbeiter'}
+          onClose={() => { setCreateEntity(null); setDialogState(null); }}
+          onSubmit={dialogState?.entity === 'mitarbeiter' ? handleUpdate : (fields: any) => handleCreate('mitarbeiter', fields)}
+          defaultValues={dialogState?.entity === 'mitarbeiter' ? dialogState.record?.fields : undefined}
+          enablePhotoScan={AI_PHOTO_SCAN['Mitarbeiter']}
+          enablePhotoLocation={AI_PHOTO_LOCATION['Mitarbeiter']}
+        />
+      )}
+      {viewState?.entity === 'schulungstermine' && (
+        <SchulungstermineViewDialog
+          open={viewState?.entity === 'schulungstermine'}
+          onClose={() => setViewState(null)}
+          record={viewState?.record}
+          onEdit={(r: any) => { setViewState(null); setDialogState({ entity: 'schulungstermine', record: r }); }}
+          schulungskatalogList={(data as any).schulungskatalog ?? []}
+          trainerList={(data as any).trainer ?? []}
+          raeumeList={(data as any).raeume ?? []}
+        />
+      )}
+      {viewState?.entity === 'zertifikate' && (
+        <ZertifikateViewDialog
+          open={viewState?.entity === 'zertifikate'}
+          onClose={() => setViewState(null)}
+          record={viewState?.record}
+          onEdit={(r: any) => { setViewState(null); setDialogState({ entity: 'zertifikate', record: r }); }}
+          teilnehmerverwaltungList={(data as any).teilnehmerverwaltung ?? []}
+          mitarbeiterList={(data as any).mitarbeiter ?? []}
+          schulungskatalogList={(data as any).schulungskatalog ?? []}
+        />
+      )}
+      {viewState?.entity === 'schulungsanmeldung' && (
+        <SchulungsanmeldungViewDialog
+          open={viewState?.entity === 'schulungsanmeldung'}
+          onClose={() => setViewState(null)}
+          record={viewState?.record}
+          onEdit={(r: any) => { setViewState(null); setDialogState({ entity: 'schulungsanmeldung', record: r }); }}
+          mitarbeiterList={(data as any).mitarbeiter ?? []}
+          schulungstermineList={(data as any).schulungstermine ?? []}
+        />
+      )}
+      {viewState?.entity === 'raeume' && (
+        <RaeumeViewDialog
+          open={viewState?.entity === 'raeume'}
+          onClose={() => setViewState(null)}
+          record={viewState?.record}
+          onEdit={(r: any) => { setViewState(null); setDialogState({ entity: 'raeume', record: r }); }}
+        />
+      )}
+      {viewState?.entity === 'trainer' && (
+        <TrainerViewDialog
+          open={viewState?.entity === 'trainer'}
+          onClose={() => setViewState(null)}
+          record={viewState?.record}
+          onEdit={(r: any) => { setViewState(null); setDialogState({ entity: 'trainer', record: r }); }}
+        />
+      )}
+      {viewState?.entity === 'bewertungen' && (
+        <BewertungenViewDialog
+          open={viewState?.entity === 'bewertungen'}
+          onClose={() => setViewState(null)}
+          record={viewState?.record}
+          onEdit={(r: any) => { setViewState(null); setDialogState({ entity: 'bewertungen', record: r }); }}
+          teilnehmerverwaltungList={(data as any).teilnehmerverwaltung ?? []}
+        />
+      )}
+      {viewState?.entity === 'teilnehmerverwaltung' && (
+        <TeilnehmerverwaltungViewDialog
+          open={viewState?.entity === 'teilnehmerverwaltung'}
+          onClose={() => setViewState(null)}
+          record={viewState?.record}
+          onEdit={(r: any) => { setViewState(null); setDialogState({ entity: 'teilnehmerverwaltung', record: r }); }}
+          schulungstermineList={(data as any).schulungstermine ?? []}
+          mitarbeiterList={(data as any).mitarbeiter ?? []}
+        />
+      )}
+      {viewState?.entity === 'schulungskatalog' && (
+        <SchulungskatalogViewDialog
+          open={viewState?.entity === 'schulungskatalog'}
+          onClose={() => setViewState(null)}
+          record={viewState?.record}
+          onEdit={(r: any) => { setViewState(null); setDialogState({ entity: 'schulungskatalog', record: r }); }}
+        />
+      )}
+      {viewState?.entity === 'mitarbeiter' && (
+        <MitarbeiterViewDialog
+          open={viewState?.entity === 'mitarbeiter'}
+          onClose={() => setViewState(null)}
+          record={viewState?.record}
+          onEdit={(r: any) => { setViewState(null); setDialogState({ entity: 'mitarbeiter', record: r }); }}
+        />
+      )}
+
+      <BulkEditDialog
+        open={!!bulkEditOpen}
+        onClose={() => setBulkEditOpen(null)}
+        onApply={handleBulkEdit}
+        fields={bulkEditOpen ? getFieldMeta(bulkEditOpen) : []}
+        selectedCount={bulkEditOpen ? selectedIds[bulkEditOpen].size : 0}
+        loading={bulkLoading}
+        lookupLists={bulkEditOpen ? getLookupLists(bulkEditOpen) : {}}
+      />
+
+      <ConfirmDialog
+        open={!!deleteTargets}
+        onClose={() => setDeleteTargets(null)}
+        onConfirm={handleBulkDelete}
+        title="Ausgewählte löschen"
+        description={`Sollen ${deleteTargets?.ids.length ?? 0} Einträge wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.`}
+      />
+    </PageShell>
+  );
+}
+```
