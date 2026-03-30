@@ -1,0 +1,20 @@
+- Schulungstermine (schulungstermine): schulung[applookup/select], startdatum[date/datetimeminute], enddatum[date/datetimeminute], trainer[applookup/select], raum[applookup/select], status[lookup/select], verfuegbare_plaetze[number], bemerkungen[string/textarea]
+  → schulung links to app_id 693ffd1b64c092bd3fb64dec
+  → trainer links to app_id 693ffd1961c93d563b523829
+  → raum links to app_id 693ffd1ab347945f97bce858
+- Schulungsanmeldung (schulungsanmeldung): mitarbeiter[applookup/select], schulungstermin[applookup/select], bemerkungen[string/textarea]
+  → mitarbeiter links to app_id 693ffd127128a18c7909c8d2
+  → schulungstermin links to app_id 693ffd1c598f914b8770d838
+- Trainer (trainer): vorname[string/text], nachname[string/text], typ[lookup/select], email[string/email], telefon[string/tel], expertise[multiplelookup/checkbox], qualifikationen[string/textarea]
+- Teilnehmerverwaltung (teilnehmerverwaltung): schulungstermin[applookup/select], anmeldedatum[date/date], status[lookup/select], anwesenheit[bool], bemerkungen[string/textarea], mitarbeiter[applookup/select], zertifikat_ausgestellt[bool]
+  → schulungstermin links to app_id 693ffd1c598f914b8770d838
+  → mitarbeiter links to app_id 693ffd127128a18c7909c8d2
+- Zertifikate (zertifikate): teilnahme[applookup/select], empfaenger[applookup/select], schulung[applookup/select], zertifikatstyp[lookup/select], zertifikatsnummer[string/text], beschreibung[string/textarea], aussteller[string/text], aussteller_position[string/text], unterschrift[string/text], siegel[string/text], logo[string/text], vorlage[lookup/select], hintergrundfarbe[lookup/select], schriftart[string/text], layoutwuensche[string/textarea], qr_code_url[string/text], digitale_signatur[bool], social_media[string/text], status[lookup/select], ausstellungsdatum[date/date]
+  → teilnahme links to app_id 693ffd1c2abdda157f9b3873
+  → empfaenger links to app_id 693ffd127128a18c7909c8d2
+  → schulung links to app_id 693ffd1b64c092bd3fb64dec
+- Bewertungen (bewertungen): teilnahme[applookup/select], gesamtbewertung[lookup/radio], inhaltsbewertung[lookup/radio], organisationsbewertung[lookup/radio], kommentar[string/textarea], verbesserungsvorschlaege[string/textarea], trainerbewertung[lookup/radio]
+  → teilnahme links to app_id 693ffd1c2abdda157f9b3873
+- Räume (raeume): raumname[string/text], standort[string/text], kapazitaet[number], ausstattung[multiplelookup/checkbox], bemerkungen[string/textarea]
+- Mitarbeiter (mitarbeiter): nachname[string/text], personalnummer[string/text], telefon[string/tel], abteilung[string/text], vorname[string/text], email[string/email], position[string/text]
+- Schulungskatalog (schulungskatalog): kategorie[lookup/select], dauer_tage[number], max_teilnehmer[number], zielgruppe[string/text], lernziele[string/textarea], voraussetzungen[string/textarea], titel[string/text], beschreibung[string/textarea], elearning_dateien[file]
